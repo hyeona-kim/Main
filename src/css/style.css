@@ -923,6 +923,11 @@
 			vertical-align: middle;
 		}
 
+		#menu{
+			margin-top: 10vh;
+			border-radius: var(--border-rad);	
+		}
+
 			#header nav > ul {
 				list-style: none;
 				margin: 0;
@@ -936,7 +941,7 @@
 					padding-left: 0;
 				}
 
-					#header nav > ul > li a {
+					#header nav > ul > li a, #header nav > ul > li .menu-btn {
 						-moz-transition: color 0.2s ease-in-out;
 						-webkit-transition: color 0.2s ease-in-out;
 						-o-transition: color 0.2s ease-in-out;
@@ -947,7 +952,12 @@
 						text-decoration: none;
 					}
 
-						#header nav > ul > li a:hover {
+					#header nav > ul > li .menu-btn {
+						border: none;
+						background-color: #fff;
+					}
+
+						#header nav > ul > li a:hover, #header nav > ul > li .menu-btn:hover {
 							color: #629DD1;
 						}
 
@@ -976,12 +986,61 @@
 			#header .container nav {
 				right: 0;
 			}
+		#header .menu-item {
+			display: inline-block;
+			position: relative;
+		}
+
+		#header .dropdown {
+			background-color: rgb(236, 236, 236);
+			display: none;
+			position: absolute;
+			top: var(--menu-height);
+			border-radius: 0 0 var(--border-rad) var(--border-rad);
+			list-style: none;
+		}
+		
+		#header .dropdown li {
+			margin: 0;
+			padding: 0;
+		}
+
+		#header .dropdown-item {
+			position: relative;
+		}
+		
+		#header .menu-item:hover>.dropdown{
+			display: inline-block;
+			width: 100px;
+			left: -18px;
+		}
+		
+		/* dropdown에서 한번 더 dropdown할 때 */
+		#header .dropdown-item:hover>.second {
+			background-color: rgb(233, 233, 233);
+			display: block;
+			position: absolute;
+			left : var(--menu-width);
+			top : 0;
+			border-radius: 0 var(--border-rad) var(--border-rad) var(--border-rad);
+		}
+
+		#header .menu-name {
+			width: var(--menu-width);
+			display: block;
+			color: rgb(61, 61, 61);
+			text-align: center;
+			font-size: var(--font-size);
+			font-weight: 700;
+			line-height: var(--menu-height);
+			text-decoration: none;
+		}
 
 /* Banner */
 
 	#banner {
 		background-color: #666666;
-		background-image: "images/banner.jpg";
+		background-image: "src\resources\images\Stephans_Quintet.jpg";
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
@@ -1088,4 +1147,49 @@
 
 		#footer .icons a {
 			color: #bbb;
+		}
+	
+		/* 오시는 길 버튼 및 지도 관련 */
+		.test{
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+		
+		.about-message__title, about-message__content {
+			display: inline-block;
+		}
+
+		.about-message__title {
+			height: 100px;
+			line-height: 100px;
+		}
+
+		.about-message__buttons {
+			width: 250px;
+			padding: 10px 0;
+			font-size: 20px;
+			border: 1px solid black;
+			border-radius: 24rem;
+			margin: 10px auto;
+		}
+
+		.about-message__buttons a{
+			display: inline-block;
+			width: 250px;
+			font-weight: bold;
+			color: black;
+			text-decoration: none;
+		}
+
+		.about-message__buttons:hover {
+			border: 1px solid #fff;
+			background-color: #F9E004;
+		}
+
+		.wrap{
+			width: 600px;
+			height: 500px;
+			border: 1px solid black;
+			margin: 10px auto;
 		}
