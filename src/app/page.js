@@ -1,4 +1,6 @@
 import Nav from "@/component/Nav";
+import MyDocument from "./pages/_document";
+import MyComponent from "@/component/Script/pro";
 
 export default function Home() {
   return (
