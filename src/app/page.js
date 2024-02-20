@@ -1,16 +1,8 @@
-import Footer from "@/component/Footer";
-import Header from "@/component/Header";
 import Nav from "@/component/Nav";
-import MyDocument from "./pages/_document";
-import MyComponent from "@/component/Script/pro";
-
-
-
 
 export default function Home() {
   return (
     <>
-      <Header></Header>
       {/* 메인배너 영역 */}
       <section id="banner">
         <article className="inner">
@@ -24,9 +16,6 @@ export default function Home() {
 			</section>
       {/* 중간영역 */}
       <Nav></Nav>
-      
-      {/* 끝영역 */}
-      <Footer></Footer>
     </>
   );
 }
