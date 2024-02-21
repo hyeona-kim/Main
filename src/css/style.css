@@ -909,7 +909,7 @@
 	}
 
 	.header-blank{
-		height: 50px;
+		height: 70px;
 	}
 
 	#header {
@@ -922,9 +922,9 @@
 		position: fixed;
 		top: 0;
 		width: 100%;
-		height: 50px;
+		height: 70px;
 		z-index: 10000;
-		box-shadow: 0 0 0.1em 0 rgba(0, 0, 0, 0.25);
+		margin-bottom: 10px;
 	}
 
 		#header h1 {
@@ -936,7 +936,7 @@
 			margin: 0;
 			padding: 0;
 			position: absolute;
-			top: 0;
+			top: 10px;
 		}
 
 			#header h1 a {
@@ -948,7 +948,7 @@
 			line-height: inherit;
 			position: absolute;
 			right: 1.25em;
-			top: 0;
+			top: 10px;
 			vertical-align: middle;
 		}
 
@@ -1069,7 +1069,7 @@
 
 	#banner {
 		background-color: #666666;
-		background-image: "src\resources\images\Stephans_Quintet.jpg";
+		background-image: "public\images\banner.jpg";
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
@@ -1077,6 +1077,7 @@
 		padding: 14em 0;
 		text-align: center;
 		position: relative;
+		display: block;
 	}
 
 		#banner:before {
@@ -1273,15 +1274,14 @@
 			.sns-login-btn a {
 				margin: 0 5px;
 			}
-		
-		/* test중 */
-		.test {
+
+		.login-wrapper {
 			display: block;
 			width: 100%;
 			text-align: center;
 		}
 		
-		.test-login {
+		.login-box {
 			display: block;
 			width: 600px;
 			height: 500px;
@@ -1290,10 +1290,16 @@
 			margin: 50px auto;
 		}
 
-		.test-logo {
+		.login-wrapper .ict-logo {
 			display: block;
-			width: 100px;
+			width: 317px;
 			margin: 30px auto;
+		}
+
+		.login-wrapper .ict-logo h1 {
+			color: #666f77;
+			font-weight: 500;
+			font-size: 1.25em;
 		}
 
 		.login-table {
@@ -1326,3 +1332,9 @@
 		#login-id-input, #login-pw-input {
 			background-color: #fff;
 		}
+	
+	/* 강사 소개 관련 */
+	.staffList-table {
+		width: 80%;
+		margin: 30px auto;
+	}
