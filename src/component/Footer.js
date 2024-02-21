@@ -56,11 +56,20 @@ export default function Footer(){
 							</div>
 						</div>
 					</div>
+					<div className="6u">
+						<h2>Aliquam Interdum</h2>
+						<p>Blandit nunc tempor lobortis nunc non. Mi accumsan. Justo aliquet massa adipiscing cubilia eu accumsan id. Arcu accumsan faucibus vis ultricies adipiscing ornare ut. Mi accumsan justo aliquet.</p>
+						<ul className="icons">
+							<li><a href="#" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
+							<li><a href="https://www.facebook.com/koicta" className="icon fa-facebook"><span className="label">Facebook</span></a></li>
+							<li><a href="https://blog.naver.com/ict-1" className="icon fa-naver" style={{ backgroundImage:"C:\MyWork\NEXT_Study\Work\Main\public\images\v.jpeg" }}><span className="label">NaverBlog</span></a></li>
+							<li><a href="#" className="icon fa-linkedin"><span className="label">LinkedIn</span></a></li>
+							<li><a href="#" className="icon fa-pinterest"><span className="label">Pinterest</span></a></li>
+						</ul></div>
 				</div>
 			</div>
 		</footer>
-            
-        </div>
+   </div>
     );
 
 }
