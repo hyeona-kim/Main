@@ -11,7 +11,7 @@ export default function Footer(){
 			<div className="container">
 				<div className="row double">
 					<div className="6u">
-						<a href="/" class="image fit">
+						<a href="/" className="image fit">
                             <img src="images/ict_logo.png" alt="footerlogo"/>  
                         </a><br/>
 						<div className='row'>
