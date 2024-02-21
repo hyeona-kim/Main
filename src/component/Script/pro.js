@@ -9,6 +9,7 @@ export default function MyComponent(){
                     <script src="js/skel.min.js"></script>
                     <script src="js/skel-layers.min.js"></script>
                     <script src="js/init.js"></script>
+                    <script src="js/ba.js"></script>
                     <noscript></noscript>
                     <body id="top"></body>
             </Script>

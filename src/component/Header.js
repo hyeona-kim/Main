@@ -25,15 +25,15 @@ export default function Header(){
                     <li className="menu-item">
                         <a href="#" className="menu-name">학원소개</a>
                         <ul className="dropdown">
-                            <li><a href="/staffList" className="menu-name">강사소개</a></li>
+                            <li><a href="/test" className="menu-name">강사소개</a></li>{/*staffList*/}
                             <li><a href="/map" className="menu-name">오시는길</a></li>
                         </ul>
                     </li>
                     <li className="menu-item">
                         <a href="#" className="menu-name">교육과정</a>
                         <ul className="dropdown">
-                            <li><a href="/math" className="menu-name">수학</a></li>
-                            <li><a href="/english" className="menu-name">영어</a></li>
+                            <li><a href="/java" className="menu-name">JAVA</a></li>
+                            <li><a href="/python" className="menu-name">Python</a></li>
                             <li><a href="/science" className="menu-name">과학</a></li>
                             <li><a href="/korean" className="menu-name">국어</a></li>
                         </ul>

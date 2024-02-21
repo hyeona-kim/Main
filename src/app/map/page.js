@@ -1,10 +1,15 @@
-
+import '../../css/style.css'
+import '../../css/skel.css'
+import '../../css/style-xlarge.css'
 
 export default function Map() {
     
     return (
         <>
-        <div className="test">
+       
+        {/* <Banner/> */}
+        {/* 위치 영역 */}
+        <div className="test" style={{border:'1px solid red'}}>
             <div className="wrap-narrow">
                 <div className="about-message">
                     <h2 lang="en" className="about-message__title">오시는 길</h2>
