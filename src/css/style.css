@@ -189,7 +189,8 @@
 	}
 
 		header.major h2 {
-			font-size: 2em;
+			font-size: 2.5em;
+			font-weight: bold;
 		}
 
 		header.major h2 + p {
@@ -884,6 +885,10 @@
 		padding-top: 3em;
 	}
 
+	.header-blank{
+		height: 50px;
+	}
+
 	#header {
 		background: #fff;
 		color: #555f66;
@@ -894,6 +899,7 @@
 		position: fixed;
 		top: 0;
 		width: 100%;
+		height: 50px;
 		z-index: 10000;
 		box-shadow: 0 0 0.1em 0 rgba(0, 0, 0, 0.25);
 	}
@@ -1149,18 +1155,23 @@
 			color: #bbb;
 		}
 	
-		/* 오시는 길 버튼 및 지도 관련 */
-		.test{
+	/* 오시는 길 버튼 및 지도 관련 */
+		.map-info__wrap{
 			display: block;
 			width: 100%;
 			text-align: center;
 		}
+
+		.about-message {
+			display: block;
+		}
 		
-		.about-message__title, about-message__content {
-			display: inline-block;
+		.about-message__title{
+			font-size: 30px;
 		}
 
-		.about-message__title {
+		.about-message__title, about-message__content {
+			display: inline-block;
 			height: 100px;
 			line-height: 100px;
 		}
@@ -1169,7 +1180,7 @@
 			width: 250px;
 			padding: 10px 0;
 			font-size: 20px;
-			border: 1px solid black;
+			border: 1px solid #dedede;
 			border-radius: 24rem;
 			margin: 10px auto;
 		}
@@ -1178,8 +1189,12 @@
 			display: inline-block;
 			width: 250px;
 			font-weight: bold;
-			color: black;
+			color: #898989;
 			text-decoration: none;
+		}
+		
+		.about-message__buttons a:hover{
+			color: #4f4f4f;
 		}
 
 		.about-message__buttons:hover {
@@ -1187,9 +1202,104 @@
 			background-color: #F9E004;
 		}
 
-		.wrap{
+		.map-wrap {
+			width: 800px;
+			height: 450px;
+			border: 1px solid #dedede;
+			margin: 10px auto;
+		}
+
+		.map-marker {
+			width: 500px;
+		}
+
+	/* 폰트, 색상 관련 공용 사용 */
+		.font-bold { font-weight: bold; }
+		.font-size-20 { font-size: 20px; }
+		.font-size-2em { font-size: 2.5em; font-weight: bold; }
+		.bg-color-naver { background-color: #1EC800; border: 1px solid green }
+		.bg-color-kakao { background-color: #F9E004; border: 1px solid #F9E004 }
+		.bg-color-google { background-color: #192024; border: 1px solid #192024 }
+
+		.bg-color-naver:hover { 
+			background-color: #fff;
+			color: #1EC800 !important;
+			border: 1px solid #1EC800;
+		}
+
+		.bg-color-kakao:hover { 
+			background-color: #fff;
+			color: #F9E004 !important;
+			border: 1px solid #F9E004;
+		}
+
+		.bg-color-google:hover { 
+			background-color: #fff;
+			color: #192024 !important;
+			border: 1px solid #192024;
+		}
+
+
+	/* 로그인 페이지 관련 */
+		.sns-login-btn {
+			width: 80%;
+			margin: 20px auto;
+			text-align: center;
+		}
+
+			.sns-login-btn a {
+				margin: 0 5px;
+			}
+		
+		/* test중 */
+		.test {
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+		
+		.test-login {
+			display: block;
 			width: 600px;
 			height: 500px;
-			border: 1px solid black;
+			border: 1px solid #dedede;
+			border-radius: 15px;
+			margin: 50px auto;
+		}
+
+		.test-logo {
+			display: block;
+			width: 100px;
+			margin: 30px auto;
+		}
+
+		.login-table {
+			width: 80%;
+			height: 200px;
+			border: 1px solid #dedede;
 			margin: 10px auto;
+		}
+
+		.login-table tbody tr:nth-child(3) button{
+			background-color: #f74f4f;
+			color: #fff;
+			width: 70%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+		}
+
+		.login-table caption { text-indent: -9999px; height: 0px; }
+		
+		#login-tbody{
+			border-radius: 10px;
+		}
+
+		#login-tbody tr{
+			height: 50px;
+			background-color: #fff;
+		}
+
+		#login-id-input, #login-pw-input {
+			background-color: #fff;
 		}

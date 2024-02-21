@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/component/Footer";
 import Header from "@/component/Header";
+import Blank from "@/component/Blank";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,8 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7fde0eadd8b1c0a7f3f2d3585823d9"/>
+      </head>
       <body className={inter.className}>
         <Header/>
+        <Blank/>
         {children}
         <Footer/>
       </body>
