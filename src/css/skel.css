@@ -214,6 +214,7 @@
 			.row.double {
 				/* margin-left: -(gutters.vertical * 2) */
 				margin-left: -8em;
+				margin-top:50px;
 			}
 
 			.row + .row.uniform.double > * {
