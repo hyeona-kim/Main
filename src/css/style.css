@@ -1044,7 +1044,7 @@
 			left: -18px;
 		}
 		
-		/* dropdown에서 한번 더 dropdown할 때 */
+		/* dropdown에서 한번 더 dropdown할 때
 		#header .dropdown-item:hover>.second {
 			background-color: rgb(233, 233, 233);
 			display: block;
@@ -1052,10 +1052,10 @@
 			left : var(--menu-width);
 			top : 0;
 			border-radius: 0 var(--border-rad) var(--border-rad) var(--border-rad);
-		}
+		} */
 
 		#header .menu-name {
-			width: var(--menu-width);
+			width: 100%;
 			display: block;
 			color: rgb(61, 61, 61);
 			text-align: center;
@@ -1063,7 +1063,10 @@
 			font-weight: 700;
 			line-height: var(--menu-height);
 			text-decoration: none;
+			border : none;
 		}
+
+		#header .menu-name:hover { color: #629DD1; }
 
 /* Banner */
 
@@ -1239,7 +1242,7 @@
 
 	/* 폰트, 색상 관련 공용 사용 */
 		.font-bold { font-weight: bold; }
-		.font-size-20 { font-size: 20px; }
+		.font-size-17 { font-size: 17px; }
 		.font-size-2em { font-size: 2.5em; font-weight: bold; }
 		.bg-color-naver { background-color: #1EC800; border: 1px solid green }
 		.bg-color-kakao { background-color: #F9E004; border: 1px solid #F9E004 }
@@ -1334,7 +1337,46 @@
 		}
 	
 	/* 강사 소개 관련 */
-	.staffList-table {
-		width: 80%;
-		margin: 30px auto;
-	}
+		.staffList-table {
+			width: 80%;
+			margin: 30px auto;
+		}
+
+	/* 교육과정 관련 */
+		.courseTypeList-wrapper {
+			width: 70%;
+			margin: 30px auto;
+		}
+
+		.courseTypeList-box {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		.search-course-table {
+			width: 100%;
+			margin: 0 auto 20px;
+			border: 1px solid rgba(144, 144, 144, 0.25) !important;
+			/* border-radius: 5px; */
+		}
+
+		.course-table {
+			margin: 20px auto;
+			border: 2px solid #ababab;
+			border-radius: 10px;
+		}
+
+		.course-table table tbody tr {
+			width: 80%;
+			background-color: #fff;
+			margin: 10px !important;
+		}
+
+		.course-table table tfoot tr td:last-child {
+			text-align: center;
+			line-height: 100%;
+		}
+
+		.course-table table tfoot tr td:last-child Button {
+			margin: 0 10px;
+		}
