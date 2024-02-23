@@ -17,6 +17,7 @@ export default function Header(){
         ).then(json => {
             setAr(json.data.courseTypeAr);
         });
+        // app.use(express.urlencoded({ extended: true }))
     };
 
     function goCtList(idx) {
@@ -51,8 +52,15 @@ export default function Header(){
                             <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(list.ct_idx)}>{list.ct_name}</button></li>
                         ))}
                         </ul>
+                    </li
+                    <li className="menu-item">
+                        <a href="/online" className="menu-name">상담센터</a>
+                        <ul className="dropdown">
+                            <li><a href="/online" className="menu-name">온라인상담</a></li>
+                            <li><a href="/Qna" className="menu-name">Q&A</a></li>
+                        </ul>
                     </li>
-                    <li><a href="8080/index">메뉴1</a></li>
+
                     <li><a href="/login" className="button special">Login</a></li>
                     <li><a href="/signUp" className="button special">Sign Up</a></li>
                 </ul>
