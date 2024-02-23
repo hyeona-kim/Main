@@ -4,8 +4,10 @@ import '../css/skel.css'
 import '../css/style-xlarge.css'
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function Header(){
+    const router = useRouter();
     const [ar, setAr] = useState([]);
     const api_uri = '/login/getCtList';
 
@@ -13,8 +15,12 @@ export default function Header(){
         axios.get(
             api_uri,
         ).then(json => {
-            setAr(json.data.ar);
+            setAr(json.data.courseTypeAr);
         });
+    };
+
+    function goCtList(idx) {
+        router.push('/ctList/'+idx);
     };
 
     useEffect(() => {
@@ -39,13 +45,16 @@ export default function Header(){
                     <li className="menu-item">
                         <a href="#" className="menu-name">교육과정</a>
                         <ul className="dropdown">
+                    {/* 반복문을 이용해 교육과정 목록 출력 */}
                         {ar.map((list) => (
-                            <li key={list.ct_idx}><a href="/java" className="menu-name">{list.ct_name}</a></li>
+                            // <li key={list.ct_idx}><a href="/java" className="menu-name">{list.ct_name}</a></li>
+                            <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(list.ct_idx)}>{list.ct_name}</button></li>
                         ))}
                         </ul>
                     </li>
-                    <li><a href="/8080/index">메뉴1</a></li>
+                    <li><a href="8080/index">메뉴1</a></li>
                     <li><a href="/login" className="button special">Login</a></li>
+                    <li><a href="/signUp" className="button special">Sign Up</a></li>
                 </ul>
             </nav>
         </header>
