@@ -1,5 +1,8 @@
 import Banner from "@/component/Banner";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
+import '../css/style.css'
+import '../css/skel.css'
+import '../css/style-xlarge.css'
 
 export default function test(){
     return(
