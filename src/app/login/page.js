@@ -1,7 +1,7 @@
 "use client"
-import '../css/style.css'
-import '../css/skel.css'
-import '../css/style-xlarge.css'
+import '../../css/style.css'
+import '../../css/skel.css'
+import '../../css/style-xlarge.css'
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

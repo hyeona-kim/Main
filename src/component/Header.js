@@ -15,6 +15,7 @@ export default function Header(){
         ).then(json => {
             setAr(json.data.ar);
         });
+        // app.use(express.urlencoded({ extended: true }))
     };
 
     useEffect(() => {
@@ -44,7 +45,13 @@ export default function Header(){
                         ))}
                         </ul>
                     </li>
-                    <li><a href="/8080/index">메뉴1</a></li>
+                    <li className="menu-item">
+                        <a href="/online" className="menu-name">상담센터</a>
+                        <ul className="dropdown">
+                            <li><a href="/online" className="menu-name">온라인상담</a></li>
+                            <li><a href="/Qna" className="menu-name">Q&A</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/login" className="button special">Login</a></li>
                 </ul>
             </nav>
