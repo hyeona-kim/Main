@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function Login() {
     const router = useRouter();
 
-    const [vo,setVo] = useState();
+    const [vo,setVo] = useState({});
     const api_uri = '/login/test';
 
     function login(){

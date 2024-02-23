@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/mate
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function kakao() {
+export default function staffList() {
     const [ar, setAr] = useState([]);
     const api_uri = '/login/getSfList';
 
