@@ -15,13 +15,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7fde0eadd8b1c0a7f3f2d3585823d9"/>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7fde0eadd8b1c0a7f3f2d3585823d9" />
+        <script src="js/html5shiv.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
+        <script src="js/ba.js"></script>
       </head>
       <body className={inter.className}>
-        <Header/>
-        <Blank/>
+        <Header />
+        <Blank />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
