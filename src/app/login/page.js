@@ -29,7 +29,6 @@ export default function Login() {
         <div className="login-wrapper">
             <div className="login-box">
                 <div className="ict-logo">
-                    {/* <img src="images\ict_logo.png" alt="Logo"></img> */}
                     <h1>한국ICT인재개발원</h1>
                 </div>
                 <form>

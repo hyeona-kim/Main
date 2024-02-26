@@ -35,7 +35,7 @@ export default function online() {
             <Banner />
             <section id="one" className="wrapper style1">
                 <header className="major">
-                    <h1>온라인 상담 신청</h1>
+                    <h2>온라인 상담 신청</h2>
                 </header>
                 <div>
                     <div>

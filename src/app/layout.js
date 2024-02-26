@@ -14,17 +14,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <script type="text/javascript" src="js/html5shiv.js"></script>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/skel.min.js"></script>
-        <script type="text/javascript" src="js/skel-layers.min.js"></script>
-        <script type="text/javascript" src="js/init.js"></script>
-        <script type="text/javascript" src="js/ba.js"></script>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7fde0eadd8b1c0a7f3f2d3585823d9" />
-      </head>
+      <Header>
+        <head>
+          <script type="text/javascript" src="js/html5shiv.js"></script>
+          <script type="text/javascript" src="js/jquery.min.js"></script>
+          <script type="text/javascript" src="js/skel.min.js"></script>
+          <script type="text/javascript" src="js/skel-layers.min.js"></script>
+          <script type="text/javascript" src="js/init.js"></script>
+          <script type="text/javascript" src="js/ba.js"></script>
+          <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7fde0eadd8b1c0a7f3f2d3585823d9" />
+        </head>
+      </Header>
       <body className={inter.className}>
-        <Header />
         <Blank />
         {children}
         <Footer />

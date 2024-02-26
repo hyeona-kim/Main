@@ -1301,7 +1301,7 @@
 
 		.login-wrapper .ict-logo h1 {
 			color: #666f77;
-			font-weight: 500;
+			font-weight: bold;
 			font-size: 1.25em;
 		}
 
@@ -1357,7 +1357,6 @@
 			width: 100%;
 			margin: 0 auto 20px;
 			border: 1px solid rgba(144, 144, 144, 0.25) !important;
-			/* border-radius: 5px; */
 		}
 
 		.course-table {
@@ -1379,4 +1378,54 @@
 
 		.course-table table tfoot tr td:last-child Button {
 			margin: 0 10px;
+		}
+
+	/* 문의사항 관련 */
+		.ask-wrapper {
+			display: block;
+			width: 100%;
+			text-align: center;	
+		}
+
+		.ask-wrapper .ict-logo {
+			display: block;
+			width: 317px;
+			margin: 30px auto;
+		}
+
+		.ask-wrapper .ict-logo h1 {
+			color: #666f77;
+			font-weight: bold;
+			font-size: 1.25em;
+		}
+
+		.ask-table {
+			width: 80%;
+			height: 200px;
+			border: 1px solid #dedede;
+			margin: 10px auto;
+		}
+		.ask-table caption { text-indent: -9999px; height: 0px; }
+
+		.ask-table tbody tr:nth-child(3) button{
+			background-color: #f74f4f;
+			color: #fff;
+			width: 70%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+		}
+
+		#ask-tbody tr{
+			height: 50px;
+			background-color: #fff;
+		}
+
+		.ask-box {
+			display: block;
+			width: 600px;
+			height: 500px;
+			border: 1px solid #dedede;
+			border-radius: 15px;
+			margin: 50px auto;
 		}
