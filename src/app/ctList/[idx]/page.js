@@ -16,6 +16,7 @@ export default function ctList(props) {
     const api_uri2 = '/login/getCtList';
     const [courseAr, setCourseAr] = useState([]);
     const [courseTypeAr, setCourseTypeAr] = useState([]);
+    const ct_idx = `${props.params.idx}`;
     const router = useRouter();
 
     const [idx, setValue] = React.useState(0);
@@ -80,13 +81,19 @@ export default function ctList(props) {
         router.push("/ctList/"+idx);
     };
 
+    // [검색]할때 오류 안나게 최상위 컴포넌트로 만드는 함수
+    function reSetList(dd){
+        setCourseAr(dd);
+    }
+
+    // [검색] 버튼 클릭해서 검색하는 기능
     function searchCourse() {
         const name = document.getElementById("c_name").value;
         if(name.trim().length > 0) {
             axios.get(
-                "/login/searchCourse?c_name="+name,
+                "/login/searchCourse?c_name="+name+"&ct_idx="+ct_idx,
             ).then((json) => {
-                setCourseAr(json.data.courseAr);
+                reSetList(json.data.CourseAr);
             });
         }else {
             alert("검색할 과정명을 입력하세요");
