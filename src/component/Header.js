@@ -48,16 +48,15 @@ export default function Header(){
                         <ul className="dropdown">
                     {/* 반복문을 이용해 교육과정 목록 출력 */}
                         {ar.map((list) => (
-                            // <li key={list.ct_idx}><a href="/java" className="menu-name">{list.ct_name}</a></li>
                             <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(list.ct_idx)}>{list.ct_name}</button></li>
                         ))}
                         </ul>
-                    </li
+                    </li>
                     <li className="menu-item">
                         <a href="/online" className="menu-name">상담센터</a>
                         <ul className="dropdown">
                             <li><a href="/online" className="menu-name">온라인상담</a></li>
-                            <li><a href="/Qna" className="menu-name">Q&A</a></li>
+                            <li><a href="/qna" className="menu-name">Q&A</a></li>
                         </ul>
                     </li>
 

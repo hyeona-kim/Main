@@ -82,8 +82,8 @@ export default function ctList(props) {
     };
 
     // [검색]할때 오류 안나게 최상위 컴포넌트로 만드는 함수
-    function reSetList(dd){
-        setCourseAr(dd);
+    function reSetList(data){
+        setCourseAr(data);
     }
 
     // [검색] 버튼 클릭해서 검색하는 기능
@@ -99,6 +99,17 @@ export default function ctList(props) {
             alert("검색할 과정명을 입력하세요");
             return;
         }
+    };
+
+    // 교육과정에서 [상담] 버튼 클릭시 이동하는 기능
+    function goCounsel() {
+        router.push("/online");
+    };
+
+    // 교육과정에서 [문의] 버튼 클릭시 이동하는 기능
+    function goAsk(c_idx) {
+        sessionStorage.setItem('ct_idx', ct_idx);
+        router.push("/ask");
     };
 
     useEffect(() => {
@@ -173,8 +184,8 @@ export default function ctList(props) {
                                 <tr>
                                     <td colSpan={3}> 
                                         <Button variant="contained" color="success">신청</Button>
-                                        <Button variant="contained" color="info">문의</Button>
-                                        <Button variant="contained" color="secondary">상담</Button>
+                                        <Button variant="contained" color="info" onClick={() => goAsk(list.c_idx)}>문의</Button>
+                                        <Button variant="contained" color="secondary" onClick={goCounsel}>상담</Button>
                                     </td>
                                 </tr>
                             </tfoot>
