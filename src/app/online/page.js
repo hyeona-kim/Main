@@ -139,8 +139,8 @@ export default function online(props) {
 
                         <div>
                             <h3 style={{ textAlign: 'center' }}>교육과정 목록</h3>
-                            <div className="courseTypeList-wrapper">
-                                <div className="courserTypeList-box">
+                            <div className="online-course-wrapper">
+                                <div className="courseTypeList-box">
                                     <Box sx={{ width: '100%' }}>
                                         <Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
                                             <Tabs value={idx} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth" centered>
