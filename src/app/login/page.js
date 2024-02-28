@@ -27,6 +27,7 @@ export default function Login() {
             if(json.data.vo != null) {
                 sessionStorage.setItem("vo", json.data.vo);
                 sessionStorage.setItem("m_id", json.data.m_id);
+                sessionStorage.setItem("tr_idx", json.data.tr_idx);
                 router.push('/myPage');
             }else {
                 alert("아이디 또는 비밀번호를 잘못 입력했습니다.");

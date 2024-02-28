@@ -103,7 +103,14 @@ export default function ctList(props) {
 
     // 교육과정에서 [신청] 버튼 클릭시 이동하는 기능
     function goEnroll(c_idx) {
-        router.push("/enroll/"+c_idx);
+        const check = sessionStorage.getItem("tr_idx");
+        // 이미 수강중인 과정이 있으면 신청 페이지 block
+        if(check === 'null'){
+            router.push("/enroll/"+c_idx);
+        }else {
+            alert("이미 수강중인 과정이 있습니다.");
+            return;
+        }
     };
 
     // 교육과정에서 [상담] 버튼 클릭시 이동하는 기능

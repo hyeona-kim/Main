@@ -1,7 +1,6 @@
 "use client"
 import Banner from "@/component/banner";
 import { useEffect } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
 
 
 export default function test(){

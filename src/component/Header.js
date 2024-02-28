@@ -1,7 +1,5 @@
 "use client"
-import '../css/style.css'
-import '../css/skel.css'
-import '../css/style-xlarge.css'
+
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
@@ -24,7 +22,18 @@ export default function Header(){
     };
 
     function logout() {
+        // sessionStorage를 청소
+        sessionStorage.removeItem("ct_idx"); 
+        sessionStorage.removeItem("tr_idx"); 
+        sessionStorage.removeItem("m_id"); 
         sessionStorage.removeItem("vo");
+        
+        // Spring서버에 저장된 session을 청소
+        axios.get(
+            "/login/logout"
+        ).then(() => {
+            
+        });
     };
 
     useEffect(() => {

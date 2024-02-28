@@ -68,23 +68,23 @@ export default function editMyInfo() {
                     {memberVo.map((vo) => (
                     <tbody id="editMyInfo-tbody" key={vo.m_idx}>
                             <tr>
-                                <td><label for="id">아이디:</label></td>
+                                <td><label htmlFor="id">아이디:</label></td>
                                 <td><input type="text" id="id" placeholder="아이디" defaultValue={vo.m_id} readOnly/></td>
                             </tr>
                             <tr>
-                                <td><label for="pw">비밀번호:</label></td>
+                                <td><label htmlFor="pw">비밀번호:</label></td>
                                 <td><input type="password" id="pw" placeholder="비밀번호"/></td>
                             </tr>
                             <tr>
-                                <td><label for="email">이메일<br/>(선택):</label></td>
+                                <td><label htmlFor="email">이메일<br/>(선택):</label></td>
                                 <td><input type="text" id="email" placeholder="이메일" defaultValue={vo.m_email}/></td>
                             </tr>
                             <tr>
-                                <td><label for="name">이름:</label></td>
+                                <td><label htmlFor="name">이름:</label></td>
                                 <td><input type="text" id="name" placeholder="이름" defaultValue={vo.m_name}/></td>
                             </tr>
                             <tr>
-                                <td><label for="phone">연락처:</label></td>
+                                <td><label htmlFor="phone">연락처:</label></td>
                                 <td><input type="text" id="phone" placeholder="연락처" defaultValue={vo.m_phone}/></td>
                             </tr>
                             <tr>
