@@ -29,6 +29,7 @@ export default function Header(){
     },[]);
 
     return (
+        <>
         <header id="header" className="skel-layers-fixed">
             <h1>
                 <a href="/"><img src='images/ict_logo.png'></img></a>
@@ -52,7 +53,7 @@ export default function Header(){
                             <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(list.ct_idx)}>{list.ct_name}</button></li>
                         ))}
                         </ul>
-                    </li
+                    </li>
                     <li className="menu-item">
                         <a href="/online" className="menu-name">상담센터</a>
                         <ul className="dropdown">
@@ -66,6 +67,6 @@ export default function Header(){
                 </ul>
             </nav>
         </header>
-        
+        </>
     );
 }
