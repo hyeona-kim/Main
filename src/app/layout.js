@@ -17,7 +17,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Header>
         <head>
-          <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7fde0eadd8b1c0a7f3f2d3585823d9"></script>
           <script type="text/javascript" src="js/html5shiv.js"></script>
           <script type="text/javascript" src="js/jquery.min.js"></script>
           <script type="text/javascript" src="js/skel.min.js"></script>
