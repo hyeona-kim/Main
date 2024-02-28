@@ -101,12 +101,18 @@ export default function ctList(props) {
         }
     };
 
+    // 교육과정에서 [신청] 버튼 클릭시 이동하는 기능
+    function goEnroll(c_idx) {
+        router.push("/enroll/"+c_idx);
+    };
+
     // 교육과정에서 [상담] 버튼 클릭시 이동하는 기능
     function goCounsel() {
         router.push("/online");
     };
 
     // 교육과정에서 [문의] 버튼 클릭시 이동하는 기능
+    // c_idx는 일단 받아둔거 - 나중에 필요하면 쓰고 아니면 지우기
     function goAsk(c_idx) {
         sessionStorage.setItem('ct_idx', ct_idx);
         router.push("/ask");
@@ -154,45 +160,54 @@ export default function ctList(props) {
                 {/* ===== 검색 기능 테이블 부분 ===== */}
 
                 {/* ===== 해당 교육과정 출력 부분 ===== */}
-                <div>
-                    {courseAr.map((list) => (
-                    <div className="course-table" key={list.c_idx}>
+                {
+                // 삼항 연산자를 이용하여 검색내용이 비었을 때 다르게 표시
+                courseAr === null
+                ?   <div className="course-table">
                         <table>
-                            <colgroup>
-                                <col width="20%"/>
-                                <col width="40%"/>
-                                <col width="40%"/>
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th className="font-bold font-size-17">교육과정</th>
-                                    <td>{list.c_name}</td>
-                                    <td rowSpan={3}>
-                                        비고
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th className="font-bold font-size-17">교육기간</th>
-                                    <td>{list.start_date} ~ {list.end_date}</td>
-                                </tr>
-                                <tr>
-                                    <th className="font-bold font-size-17">교육요일</th>
-                                    <td>{list.c_day}</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colSpan={3}> 
-                                        <Button variant="contained" color="success">신청</Button>
-                                        <Button variant="contained" color="info" onClick={() => goAsk(list.c_idx)}>문의</Button>
-                                        <Button variant="contained" color="secondary" onClick={goCounsel}>상담</Button>
-                                    </td>
-                                </tr>
-                            </tfoot>
+                            <tbody><tr><td className="font-center">해당 과정이 없습니다.</td></tr></tbody>
                         </table>
                     </div>
-                    ))}
-                </div>
+                :   <div>
+                        {courseAr.map((list) => (
+                        <div className="course-table" key={list.c_idx}>
+                            <table>
+                                <colgroup>
+                                    <col width="20%"/>
+                                    <col width="40%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th className="font-bold font-size-17">교육과정</th>
+                                        <td>{list.c_name}</td>
+                                        <td rowSpan={3}>
+                                            비고
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th className="font-bold font-size-17">교육기간</th>
+                                        <td>{list.start_date} ~ {list.end_date}</td>
+                                    </tr>
+                                    <tr>
+                                        <th className="font-bold font-size-17">교육요일</th>
+                                        <td>{list.c_day}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colSpan={3}> 
+                                            <Button variant="contained" color="success" onClick={() => goEnroll(list.c_idx)}>신청</Button>
+                                            <Button variant="contained" color="info" onClick={() => goAsk(list.c_idx)}>문의</Button>
+                                            <Button variant="contained" color="secondary" onClick={goCounsel}>상담</Button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        ))}
+                    </div>
+                }
                 {/* ===== 해당 교육과정 출력 부분 ===== */}
             </div>
         </>
