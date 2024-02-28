@@ -17,9 +17,9 @@ export default function signUp() {
         const m_email = document.getElementById("m_email").value;
         const m_name = document.getElementById("m_name").value;
         const m_phone = document.getElementById("m_phone").value;
-
+        
         // 각 데이터들 유효성 검사
-        if(!m_id.trim().length > 4) {
+        if(m_id.trim().length < 4) {
             alert("아이디는 4자리(공백제외) 이상 입력하세요");
             return;
         }
@@ -64,7 +64,7 @@ export default function signUp() {
                 element.innerHTML = "<div className='font-color-blue'>중복되지 않습니다.</div>";
                 setFlag(false);
             }
-            console.log(flag);
+            // console.log(flag);
         });
     }
 
