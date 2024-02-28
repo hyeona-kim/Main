@@ -24,8 +24,13 @@ export default function Header(){
         router.push('/ctList/'+idx);
     };
 
+    function logout() {
+        sessionStorage.removeItem("vo");
+    };
+
     useEffect(() => {
         getCourseTypeList();
+        
     },[]);
 
     return (
@@ -60,8 +65,18 @@ export default function Header(){
                         </ul>
                     </li>
 
-                    <li><a href="/login" className="button special">Login</a></li>
-                    <li><a href="/signUp" className="button special">Sign Up</a></li>
+                    {/* 삼항연산자를 이용해 로그인 후 버튼을 다르게 출력 */}
+                    {
+                        sessionStorage.getItem("vo") === null
+                        ?   <>
+                            <li><a href="/login" className="button special">Login</a></li>
+                            <li><a href="/signUp" className="button special">Sign Up</a></li>
+                            </>
+                        :   <>
+                            <li><a href="/myPage" className="button special">My Page</a></li>
+                            <li><a href="/" className="button special" onClick={() => logout()}>Logout</a></li>
+                            </>
+                    }
                 </ul>
             </nav>
         </header>
