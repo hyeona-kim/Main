@@ -26,6 +26,7 @@ export default function ask(props) {
             api_uri+"?ac_title="+title+"&ac_content="+content,
         ).then(json => {
             router.push("/ctList/"+idx);
+            sessionStorage.removeItem("ct_idx");
         });
     }
 

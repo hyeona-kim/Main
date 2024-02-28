@@ -15,6 +15,7 @@ export default function editMyInfo() {
         const email = document.getElementById("email").value;
         const phone = document.getElementById("phone").value;
         const name = document.getElementById("name").value;
+        const addr = document.getElementById("addr").value;
 
         // 각 데이터들 유효성 검사
         if(!pw.trim().length > 0) {
@@ -29,13 +30,18 @@ export default function editMyInfo() {
             alert("연락처를 정확히 입력하세요 (예)010-1234-5678");
             return;
         }
+        if(!addr.trim().length > 0) {
+            alert("주소를 입력하세요");
+            return;
+        }
 
         axios.post(
             "/login/editMyInfo?m_id="+id+
                 "&m_pw="+pw+
                 "&m_email="+email+
                 "&m_phone="+phone+
-                "&m_name="+name
+                "&m_name="+name+
+                "&m_addr="+addr
         ).then((json) => {
             router.replace("/myPage");
         });
@@ -45,7 +51,7 @@ export default function editMyInfo() {
         axios.get(
             "/login/getMember?m_id="+m_id
         ).then((json) => {
-            setMemberVo(json.data.vo);
+            setMemberVo(json.data.memberVo);
         });
     };
 
@@ -86,6 +92,10 @@ export default function editMyInfo() {
                             <tr>
                                 <td><label htmlFor="phone">연락처:</label></td>
                                 <td><input type="text" id="phone" placeholder="연락처" defaultValue={vo.m_phone}/></td>
+                            </tr>
+                            <tr>
+                                <td><label htmlFor="addr">주소:</label></td>
+                                <td><input type="text" id="addr" placeholder="주소" defaultValue={vo.m_addr}/></td>
                             </tr>
                             <tr>
                                 <td colSpan={2}><button className="font-bold font-size-17" onClick={() => editInfo()}>수정</button></td>
