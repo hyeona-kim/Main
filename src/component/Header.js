@@ -34,6 +34,7 @@ export default function Header(){
     },[]);
 
     return (
+        <>
         <header id="header" className="skel-layers-fixed">
             <h1>
                 <a href="/"><img src='images/ict_logo.png'></img></a>
@@ -80,6 +81,6 @@ export default function Header(){
                 </ul>
             </nav>
         </header>
-        
+        </>
     );
 }
