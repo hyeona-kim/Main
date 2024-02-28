@@ -23,17 +23,12 @@ export default function Header(){
 
     function logout() {
         // sessionStorage를 청소
-        sessionStorage.removeItem("ct_idx"); 
-        sessionStorage.removeItem("tr_idx"); 
-        sessionStorage.removeItem("m_id"); 
-        sessionStorage.removeItem("vo");
+        sessionStorage.clear();
         
         // Spring서버에 저장된 session을 청소
         axios.get(
             "/login/logout"
-        ).then(() => {
-            
-        });
+        ).then();
     };
 
     useEffect(() => {
@@ -76,7 +71,7 @@ export default function Header(){
 
                     {/* 삼항연산자를 이용해 로그인 후 버튼을 다르게 출력 */}
                     {
-                        sessionStorage.getItem("vo") === null
+                        sessionStorage.getItem("memberVo") === null
                         ?   <>
                             <li><a href="/login" className="button special">Login</a></li>
                             <li><a href="/signUp" className="button special">Sign Up</a></li>

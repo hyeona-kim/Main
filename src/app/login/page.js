@@ -24,8 +24,8 @@ export default function Login() {
         axios.get(
             api_uri+"?m_id="+m_id+"&m_pw="+m_pw,
         ).then(json => {
-            if(json.data.vo != null) {
-                sessionStorage.setItem("vo", json.data.vo);
+            if(json.data.memberVo != null) {
+                sessionStorage.setItem("memberVo", json.data.memberVo);
                 sessionStorage.setItem("m_id", json.data.m_id);
                 sessionStorage.setItem("tr_idx", json.data.tr_idx);
                 router.push('/myPage');
@@ -38,7 +38,7 @@ export default function Login() {
     return(
         <div className="login-wrapper">
             {
-                sessionStorage.getItem("vo") === null
+                sessionStorage.getItem("memberVo") === null
                 ? 
                     <div className="login-box">
                         <div className="ict-logo">

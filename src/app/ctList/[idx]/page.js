@@ -104,8 +104,9 @@ export default function ctList(props) {
     // 교육과정에서 [신청] 버튼 클릭시 이동하는 기능
     function goEnroll(c_idx) {
         const check = sessionStorage.getItem("tr_idx");
+        
         // 이미 수강중인 과정이 있으면 신청 페이지 block
-        if(check === 'null'){
+        if(check === 'undefined' || check === null){
             router.push("/enroll/"+c_idx);
         }else {
             alert("이미 수강중인 과정이 있습니다.");
@@ -121,6 +122,7 @@ export default function ctList(props) {
     // 교육과정에서 [문의] 버튼 클릭시 이동하는 기능
     // c_idx는 일단 받아둔거 - 나중에 필요하면 쓰고 아니면 지우기
     function goAsk(c_idx) {
+        // 문의 후 원래 보던 페이지로 가기위해 저장
         sessionStorage.setItem('ct_idx', ct_idx);
         router.push("/ask");
     };
