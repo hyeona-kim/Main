@@ -17,7 +17,6 @@ export default function Header(){
         ).then(json => {
             setAr(json.data.courseTypeAr);
         });
-        // app.use(express.urlencoded({ extended: true }))
     };
 
     function goCtList(idx) {
