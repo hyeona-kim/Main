@@ -1,8 +1,57 @@
-import Banner from "@/component/Banner";
+"use client"
+import Banner from "@/component/banner";
+import { useEffect } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 
 
 export default function test(){
+
+    useEffect(() => {
+        const kakaoMapScript = document.createElement('script')
+        kakaoMapScript.async = false
+        kakaoMapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=700d399006256f95732f06b19c046ba5&autoload=false`
+        document.head.appendChild(kakaoMapScript)
+
+        const onLoadKakaoAPI = () => {
+            window.kakao.maps.load(() => {
+            var container = document.getElementById('map')
+            var options = {
+                center: new window.kakao.maps.LatLng(37.501160763186576, 127.02513738450986),
+                level: 3,
+            }
+
+            var map = new window.kakao.maps.Map(container, options)
+            // 마커가 표시될 위치입니다 
+            var markerPosition  = new kakao.maps.LatLng(37.501160763186576, 127.02513738450986); 
+    
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+    
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
+
+            // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            var iwContent = '<div style="width: 290px; height: 62px; padding: 5px;"><span style="display: inline-block; width: 100%; font-size: 16px;">서울특별시 서초구 <br/> 서초대로77길 41, 4층 (서초동, 대동Ⅱ)</span><a href="https://kko.to/peUbsxk2hV" style="color:#898989; text-decoration: none;" target="_blank">길찾기</a></div>',
+                iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+    
+            // 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                position : iwPosition, 
+                content : iwContent,
+            });
+            
+            // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+            infowindow.open(map, marker);
+            })
+        }
+
+
+
+        kakaoMapScript.addEventListener('load', onLoadKakaoAPI)
+    }, []);
+
     return(
         <>
         <Banner/>
@@ -43,38 +92,8 @@ export default function test(){
                                 </div>
                             </div>
                         </div>
-                        <div className="map-wrap">
-                            <div id="map" className="about-location__map">
-                                {/* 지도에 보여줄 위치 지정 (위도,경도) */}
-                                <Map
-                                    center={{ lat: 37.501160763186576, lng: 127.02513738450986 }}
-                                    style={{
-                                    width: '798px',
-                                    height: '448px',
-                                    }}
-                                >
-                                    {/* 핀 찍힐 위치 */}
-                                    <MapMarker
-                                        style={{
-                                            border: 'tranparent',
-                                        }}
-                                        position={{ lat: 37.501160763186576, lng: 127.02513738450986 }}
-                                    >
-                                        <div style={{
-                                            height: '48px',
-                                        }}>
-                                            <span style={{
-                                                display: 'inline-block',
-                                                width: '100%',
-                                                fontSize: '13px',
-                                                lineHeight: '16px',
-                                            }}>
-                                            서울특별시 서초구 <br/> 서초대로77길 41, 4층 (서초동, 대동Ⅱ)
-                                            </span>
-                                        </div>
-                                    </MapMarker>
-                                </Map>
-                            </div>
+                        <div className="map-wrap" id="map">
+                            
                         </div>
                     </div>
                 </section>

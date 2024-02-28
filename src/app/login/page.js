@@ -24,9 +24,14 @@ export default function Login() {
         axios.get(
             api_uri+"?m_id="+m_id+"&m_pw="+m_pw,
         ).then(json => {
-            sessionStorage.setItem("vo", json.data.vo);
-            sessionStorage.setItem("m_id", json.data.m_id);
-            router.push("/myPage");
+            if(json.data.vo != null) {
+                sessionStorage.setItem("vo", json.data.vo);
+                sessionStorage.setItem("m_id", json.data.m_id);
+                router.push('/myPage');
+            }else {
+                alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
+                return;
+            }
         });
     }
     return(
@@ -46,7 +51,6 @@ export default function Login() {
                                         <td><input type="text" id="login-id-input" placeholder="아이디 입력"></input></td>
                                     </tr>
                                     <tr>
-                                        {/* type password여서 나중에 실제 로그인할때 데이터가 정확하게 넘어가는지 체크해야함 */}
                                         <td><input type="password" id="login-pw-input" name="" placeholder="비밀번호 입력"></input></td>
                                     </tr>
                                     <tr>

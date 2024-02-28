@@ -1373,8 +1373,11 @@
 			margin: 0 10px;
 		}
 
-
-
+	/* 온라인 상담 관련 */
+		.online-course-wrapper {
+			width: 100%;
+			margin: 30px auto;
+		}
 
 		.online-table{
 			width: 100%;
