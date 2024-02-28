@@ -1043,16 +1043,6 @@
 			width: 100px;
 			left: -18px;
 		}
-		
-		/* dropdown에서 한번 더 dropdown할 때
-		#header .dropdown-item:hover>.second {
-			background-color: rgb(233, 233, 233);
-			display: block;
-			position: absolute;
-			left : var(--menu-width);
-			top : 0;
-			border-radius: 0 var(--border-rad) var(--border-rad) var(--border-rad);
-		} */
 
 		#header .menu-name {
 			width: 100%;
@@ -1241,7 +1231,10 @@
 		}
 
 	/* 폰트, 색상 관련 공용 사용 */
+		.font-center { text-align: center; }
 		.font-bold { font-weight: bold; }
+		.font-color-blue { color: blue; }
+		.font-color-red { color: red; }
 		.font-size-17 { font-size: 17px; }
 		.font-size-2em { font-size: 2.5em; font-weight: bold; }
 		.bg-color-naver { background-color: #1EC800; border: 1px solid green }
@@ -1301,7 +1294,7 @@
 
 		.login-wrapper .ict-logo h1 {
 			color: #666f77;
-			font-weight: 500;
+			font-weight: bold;
 			font-size: 1.25em;
 		}
 
@@ -1312,7 +1305,7 @@
 			margin: 10px auto;
 		}
 
-		.login-table tbody tr:nth-child(3) button{
+		.login-table tbody tr:last-child td button{
 			background-color: #f74f4f;
 			color: #fff;
 			width: 70%;
@@ -1332,7 +1325,7 @@
 			background-color: #fff;
 		}
 
-		#login-id-input, #login-pw-input {
+		.login-input{
 			background-color: #fff;
 		}
 	
@@ -1357,7 +1350,6 @@
 			width: 100%;
 			margin: 0 auto 20px;
 			border: 1px solid rgba(144, 144, 144, 0.25) !important;
-			/* border-radius: 5px; */
 		}
 
 		.course-table {
@@ -1365,7 +1357,7 @@
 			border: 2px solid #ababab;
 			border-radius: 10px;
 		}
-
+		
 		.course-table table tbody tr {
 			width: 80%;
 			background-color: #fff;
@@ -1380,6 +1372,7 @@
 		.course-table table tfoot tr td:last-child Button {
 			margin: 0 10px;
 		}
+
 
 
 
@@ -1418,3 +1411,189 @@
 			border: 1px solid red;
 		}
 		
+
+	/* 문의사항 관련 */
+		.ask-wrapper {
+			display: block;
+			width: 100%;
+			text-align: center;	
+		}
+
+		.ask-wrapper .ict-logo {
+			display: block;
+			width: 317px;
+			margin: 30px auto;
+		}
+
+		.ask-wrapper .ict-logo h1 {
+			color: #666f77;
+			font-weight: bold;
+			font-size: 1.25em;
+		}
+
+		.ask-table {
+			width: 80%;
+			height: 200px;
+			border: 1px solid #dedede;
+			margin: 10px auto;
+		}
+		.ask-table caption { text-indent: -9999px; height: 0px; }
+
+		.ask-table tbody tr:last-child button{
+			background-color: #f74f4f;
+			color: #fff;
+			width: 70%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+		}
+
+		#ask-tbody tr{
+			height: 50px;
+			background-color: #fff;
+		}
+
+		.ask-box {
+			display: block;
+			width: 600px;
+			height: 500px;
+			border: 1px solid #dedede;
+			border-radius: 15px;
+			margin: 50px auto;
+		}
+
+	/* 회원가입 관련 */
+		#login-wrapper, #login-box {
+			height: 700px;
+			margin-bottom: 50px;
+		}
+	
+	/* 마이페이지 관련 */
+		.my-course-table {
+			width: 80%;
+			margin: 20px auto;
+			border: 2px solid #ababab;
+			border-radius: 10px;
+		}
+		
+		.my-course-table table tbody tr {
+			background-color: #fff;
+			margin: 10px !important;
+		}
+
+		.my-course-table table tfoot tr td:last-child {
+			text-align: center;
+			line-height: 100%;
+		}
+
+		.my-course-table table tfoot tr td:last-child Button {
+			margin: 0 10px;
+		}
+
+		.edit-myinfo-btn {
+			display: block;
+			width: 80%;
+			margin: 0 auto;
+			text-align: right;
+		}
+
+	/* 마이페이지 내정보 수정 관련 */
+		.editMyInfo-wrapper {
+			display: block;
+			width: 100%;
+			text-align: center;	
+		}
+
+		.editMyInfo-wrapper .ict-logo {
+			display: block;
+			width: 317px;
+			margin: 30px auto;
+		}
+
+		.editMyInfo-wrapper .ict-logo h1 {
+			color: #666f77;
+			font-weight: bold;
+			font-size: 1.25em;
+		}
+
+		.editMyInfo-table {
+			width: 80%;
+			height: 200px;
+			border: 1px solid #dedede;
+			margin: 10px auto;
+		}
+		.editMyInfo-table caption { text-indent: -9999px; height: 0px; }
+
+		.editMyInfo-table tbody tr:last-child button{
+			background-color: #f74f4f;
+			color: #fff;
+			width: 70%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+		}
+
+		#editMyInfo-tbody tr{
+			height: 50px;
+			background-color: #fff;
+		}
+
+		.editMyInfo-box {
+			display: block;
+			width: 600px;
+			height: 525px;
+			border: 1px solid #dedede;
+			border-radius: 15px;
+			margin: 50px auto;
+		}
+	
+	/* 과정 수강신청 관련 */
+		.enroll-wrapper {
+			display: block;
+			width: 100%;
+			text-align: center;	
+		}
+
+		.enroll-wrapper .ict-logo {
+			display: block;
+			width: 317px;
+			margin: 30px auto;
+		}
+
+		.enroll-wrapper .ict-logo h1 {
+			color: #666f77;
+			font-weight: bold;
+			font-size: 1.25em;
+		}
+		
+		.enroll-box {
+			display: block;
+			width: 900px;
+			height: 1000px;
+			border: 1px solid #dedede;
+			border-radius: 15px;
+			margin: 50px auto;
+		}
+
+		.enroll-table {
+			width: 80%;
+			height: 200px;
+			border: 1px solid #dedede;
+			margin: 10px auto;
+		}
+		.enroll-table caption { text-indent: -9999px; height: 0px; }
+
+		.enroll-table tbody tr:last-child button{
+			background-color: #f74f4f;
+			color: #fff;
+			width: 70%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+		}
+
+		#enroll-tbody tr{
+			height: 50px;
+			background-color: #fff;
+		}
+

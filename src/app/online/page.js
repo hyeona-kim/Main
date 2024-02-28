@@ -131,10 +131,12 @@ export default function online(props) {
     return (
         <>
             <Banner />
+
             <div className="container">
                 <hr />
                 <div className="row">
                     <div className="6u">
+
                         <div>
                             <h3 style={{ textAlign: 'center' }}>교육과정 목록</h3>
                             <div className="courseTypeList-wrapper">

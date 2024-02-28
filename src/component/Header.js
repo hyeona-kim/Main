@@ -24,8 +24,13 @@ export default function Header(){
         router.push('/ctList/'+idx);
     };
 
+    function logout() {
+        sessionStorage.removeItem("vo");
+    };
+
     useEffect(() => {
         getCourseTypeList();
+        
     },[]);
 
     return (
@@ -49,7 +54,6 @@ export default function Header(){
                         <ul className="dropdown">
                     {/* 반복문을 이용해 교육과정 목록 출력 */}
                         {ar.map((list) => (
-                            // <li key={list.ct_idx}><a href="/java" className="menu-name">{list.ct_name}</a></li>
                             <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(list.ct_idx)}>{list.ct_name}</button></li>
                         ))}
                         </ul>
@@ -58,12 +62,22 @@ export default function Header(){
                         <a href="/online" className="menu-name">상담센터</a>
                         <ul className="dropdown">
                             <li><a href="/online" className="menu-name">온라인상담</a></li>
-                            <li><a href="/Qna" className="menu-name">Q&A</a></li>
+                            <li><a href="/qna" className="menu-name">Q&A</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="/login" className="button special">Login</a></li>
-                    <li><a href="/signUp" className="button special">Sign Up</a></li>
+                    {/* 삼항연산자를 이용해 로그인 후 버튼을 다르게 출력 */}
+                    {
+                        sessionStorage.getItem("vo") === null
+                        ?   <>
+                            <li><a href="/login" className="button special">Login</a></li>
+                            <li><a href="/signUp" className="button special">Sign Up</a></li>
+                            </>
+                        :   <>
+                            <li><a href="/myPage" className="button special">My Page</a></li>
+                            <li><a href="/" className="button special" onClick={() => logout()}>Logout</a></li>
+                            </>
+                    }
                 </ul>
             </nav>
         </header>

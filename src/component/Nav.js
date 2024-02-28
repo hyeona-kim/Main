@@ -43,7 +43,7 @@ export default function Nav(){
 					<div className="row" >
 						<div className="12u" >
 							<section className="special ">
-                                <img src="../images/main-banner1.jpg" alt="logo" width="100%" height="720"></img>
+                                <img src="../images/main-banner1.jpg" alt="logo" width="100%" height="670px"></img>
 								<p>한국아이씨티기술협회 부설 한국ICT인재개발원에서는 수료 전부터 1:1 기업 취업연계 매칭으로 완벽 취업성공시스템을 진행합니다.<br/>
 									여러분은 취업에 대한 열정만 가지고 있으면 됩니다. 나머지 준비는 한국ICT인재개발원에서 모든 것을 준비합니다.<br/>
 									성공취업！ 그리고 취업 후에도 늘 여러분과 함께합니다.</p>

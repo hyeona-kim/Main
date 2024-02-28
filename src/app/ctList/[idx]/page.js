@@ -16,6 +16,7 @@ export default function ctList(props) {
     const api_uri2 = '/login/getCtList';
     const [courseAr, setCourseAr] = useState([]);
     const [courseTypeAr, setCourseTypeAr] = useState([]);
+    const ct_idx = `${props.params.idx}`;
     const router = useRouter();
 
     const [idx, setValue] = React.useState(0);
@@ -80,18 +81,41 @@ export default function ctList(props) {
         router.push("/ctList/"+idx);
     };
 
+    // [검색]할때 오류 안나게 최상위 컴포넌트로 만드는 함수
+    function reSetList(data){
+        setCourseAr(data);
+    }
+
+    // [검색] 버튼 클릭해서 검색하는 기능
     function searchCourse() {
         const name = document.getElementById("c_name").value;
         if(name.trim().length > 0) {
             axios.get(
-                "/login/searchCourse?c_name="+name,
+                "/login/searchCourse?c_name="+name+"&ct_idx="+ct_idx,
             ).then((json) => {
-                setCourseAr(json.data.courseAr);
+                reSetList(json.data.CourseAr);
             });
         }else {
             alert("검색할 과정명을 입력하세요");
             return;
         }
+    };
+
+    // 교육과정에서 [신청] 버튼 클릭시 이동하는 기능
+    function goEnroll(c_idx) {
+        router.push("/enroll/"+c_idx);
+    };
+
+    // 교육과정에서 [상담] 버튼 클릭시 이동하는 기능
+    function goCounsel() {
+        router.push("/online");
+    };
+
+    // 교육과정에서 [문의] 버튼 클릭시 이동하는 기능
+    // c_idx는 일단 받아둔거 - 나중에 필요하면 쓰고 아니면 지우기
+    function goAsk(c_idx) {
+        sessionStorage.setItem('ct_idx', ct_idx);
+        router.push("/ask");
     };
 
     useEffect(() => {
@@ -136,45 +160,54 @@ export default function ctList(props) {
                 {/* ===== 검색 기능 테이블 부분 ===== */}
 
                 {/* ===== 해당 교육과정 출력 부분 ===== */}
-                <div>
-                    {courseAr.map((list) => (
-                    <div className="course-table" key={list.c_idx}>
+                {
+                // 삼항 연산자를 이용하여 검색내용이 비었을 때 다르게 표시
+                courseAr === null
+                ?   <div className="course-table">
                         <table>
-                            <colgroup>
-                                <col width="20%"/>
-                                <col width="40%"/>
-                                <col width="40%"/>
-                            </colgroup>
-                            <tbody>
-                                <tr>
-                                    <th className="font-bold font-size-17">교육과정</th>
-                                    <td>{list.c_name}</td>
-                                    <td rowSpan={3}>
-                                        비고
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th className="font-bold font-size-17">교육기간</th>
-                                    <td>{list.start_date} ~ {list.end_date}</td>
-                                </tr>
-                                <tr>
-                                    <th className="font-bold font-size-17">교육요일</th>
-                                    <td>{list.c_day}</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colSpan={3}> 
-                                        <Button variant="contained" color="success">신청</Button>
-                                        <Button variant="contained" color="info">문의</Button>
-                                        <Button variant="contained" color="secondary">상담</Button>
-                                    </td>
-                                </tr>
-                            </tfoot>
+                            <tbody><tr><td className="font-center">해당 과정이 없습니다.</td></tr></tbody>
                         </table>
                     </div>
-                    ))}
-                </div>
+                :   <div>
+                        {courseAr.map((list) => (
+                        <div className="course-table" key={list.c_idx}>
+                            <table>
+                                <colgroup>
+                                    <col width="20%"/>
+                                    <col width="40%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <th className="font-bold font-size-17">교육과정</th>
+                                        <td>{list.c_name}</td>
+                                        <td rowSpan={3}>
+                                            비고
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th className="font-bold font-size-17">교육기간</th>
+                                        <td>{list.start_date} ~ {list.end_date}</td>
+                                    </tr>
+                                    <tr>
+                                        <th className="font-bold font-size-17">교육요일</th>
+                                        <td>{list.c_day}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colSpan={3}> 
+                                            <Button variant="contained" color="success" onClick={() => goEnroll(list.c_idx)}>신청</Button>
+                                            <Button variant="contained" color="info" onClick={() => goAsk(list.c_idx)}>문의</Button>
+                                            <Button variant="contained" color="secondary" onClick={goCounsel}>상담</Button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        ))}
+                    </div>
+                }
                 {/* ===== 해당 교육과정 출력 부분 ===== */}
             </div>
         </>
