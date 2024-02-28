@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           <script type="text/javascript" src="js/skel.min.js"></script>
           <script type="text/javascript" src="js/skel-layers.min.js"></script>
           <script type="text/javascript" src="js/init.js"></script>
-          <script type="text/javascript" src="js/ba.js"></script>
+          {/* <script type="text/javascript" src="js/ba.js"></script> */}
         </head>
       </Header>
       <body className={inter.className}>
