@@ -37,7 +37,7 @@ export default function Qna() {
                             <p><a href="/write" variant="contained" ><Button>글쓰기</Button></a></p>
                         </header>
                         <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <Table aria-label="simple table">
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>번호</TableCell>
