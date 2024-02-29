@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import { useRouter } from "next/navigation";
 import { Button, Radio, RadioGroup } from "@mui/material";
 import Blank from "@/component/Blank";
-import Banner from "@/component/banner";
+import Banner from "@/component/Banner";
 
 
 export default function online(props) {
