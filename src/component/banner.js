@@ -9,9 +9,10 @@ return (
           <h2>This is Ion</h2>
           <p>A free responsive template by <a href="http://templated.co">TEMPLATED</a></p>
           <ul className="actions">
-            <li><img src='images/banner.jpg' width={'850px'}></img></li>
+            <li><a href="#content" className="button big special">Sign Up</a></li>
+            <li><a href="#elements" className="button big alt">Learn More</a></li>
           </ul>
         </article>
-	</section>
+   </section>
     );
 }
