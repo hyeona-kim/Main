@@ -1,5 +1,4 @@
 "use client"
-import Banner from "@/component/Banner";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import * as React from 'react';
@@ -11,6 +10,7 @@ import Box from '@mui/material/Box';
 import { useRouter } from "next/navigation";
 import { Button, Radio, RadioGroup } from "@mui/material";
 import Blank from "@/component/Blank";
+import Banner from "@/component/Banner";
 
 
 export default function online(props) {
@@ -29,14 +29,16 @@ export default function online(props) {
         let ac_email = document.getElementById("ac_email");
         let ac_phone = document.getElementById("ac_phone");
         let ac_content = document.getElementById("ac_content");
-        let ac_gender = document.getElementsByName("ac_gender")
-
+        let frm = document.getElementById("frm")
+        let ac_gender = frm.gender.value;
+ 
         formData.append("ac_name", ac_name.value);
         formData.append("ac_email", ac_email.value);
         formData.append("ac_phone", ac_phone.value);
         formData.append("ac_content", ac_content.value);
-        formData.append("ac_gender", ac_gender.value);
-        s
+        formData.append("ac_gender", ac_gender);
+  
+        
         //비동기식 통신
         axios.post(
             api_uri, formData, { headers: { "Content-Type": 'multipart/form-data', } }
@@ -193,25 +195,30 @@ export default function online(props) {
                                 <form id="frm">
                                     <table>
                                         <caption>온라인 상담 신청 테이블</caption>
+                                        <span style={{fontSize:'10px', color:'red'}}>(*) 는 필수 입력 사항 입니다 </span>
                                         <tbody>
                                             <tr>
-                                                <td><input type="text" id="ac_name" required placeholder="이름을 입력하세요"></input></td>
+                                                <td><input type="text" id="ac_name" required placeholder="* 이름을 입력하세요 "></input></td>
                                             </tr>
                                             <tr>
                                                 <td><input type="email" id="ac_email" required placeholder="이메일을 입력하세요"></input></td>
                                             </tr>
                                             <tr>
-                                                <td><input type="text" id="ac_phone" name="phone" required placeholder="연락처을 입력하세요" /></td>
+                                                <td><input type="text" id="ac_phone" name="phone" required placeholder="* 연락처을 입력하세요" /></td>
                                             </tr>
                                             <tr>
                                                 <td><textarea id="ac_content" required placeholder="내용을 입력하세요"></textarea></td>
                                             </tr>
-                                            {/* <tr>
+                                            <tr>
                                                 <td>
-                                                    <label>남자</label><input type="radio" name="gender" value={'남자'}/>
-                                                    <label>여자</label><input type="radio" name="gender" value={'여자'} />
+                                                    {/* <RadioGroup label="성별"> */}
+                                                        남자<input type="radio" name="gender"  value='남자'/>
+                                                        여자<input type="radio" name="gender"  value='여자' />
+                                                        {/* <Radio name="gender" value={"남자"}>남자</Radio>
+                                                        <Radio name="gender" value={"여자"}>여자</Radio>
+                                                    </RadioGroup> */}
                                                 </td>
-                                            </tr><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> */}
+                                            </tr>
                                             <tr>
                                                 <td><button type="button" onClick={handleData} className="onlien-btn">저장</button></td>
                                             </tr>

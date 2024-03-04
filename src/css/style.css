@@ -1626,4 +1626,53 @@
 
 		#book-List-table tbody tr td {
 			font-size: 14px;
+      
+	/* Q&A 글쓰기 관련 */
+		.qna-wrapper {
+			display: block;
+			width: 100%;
+			text-align: center;	
+		}
+
+		.qna-wrapper .ict-logo {
+			display: block;
+			width: 317px;
+			margin: 30px auto;
+		}
+
+		.qna-wrapper .ict-logo h1 {
+			color: #666f77;
+			font-weight: bold;
+			font-size: 1.25em;
+		}
+		
+		.qna-box {
+			display: block;
+			width: 900px;
+			height: 500px;
+			border: 1px solid #dedede;
+			border-radius: 15px;
+			margin: 50px auto;
+		}
+
+		.qna-table {
+			width: 80%;
+			height: 200px;
+			border: 1px solid #dedede;
+			margin: 10px auto;
+		}
+		.qna-table caption { text-indent: -9999px; height: 0px; }
+
+		.qna-table tbody tr:last-child button{
+			background-color: #4e91cb;
+			color: #fff;
+			width: 70%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+		}
+
+		#qna-tbody tr{
+			height: 50px;
+			background-color: #fff;
 		}
