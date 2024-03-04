@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
+import TrainingBookModal from "@/component/TrainingBookModal";
 
 export default function ctList(props) {
     // uri에 변수를 사용하기 위해 그레이브(`) 사용해야한다
@@ -16,6 +17,7 @@ export default function ctList(props) {
     const api_uri2 = '/login/getCtList';
     const [courseAr, setCourseAr] = useState([]);
     const [courseTypeAr, setCourseTypeAr] = useState([]);
+    const [bookAr, setBookAr] = useState([]);
     const ct_idx = `${props.params.idx}`;
     const router = useRouter();
 
@@ -127,6 +129,15 @@ export default function ctList(props) {
         router.push("/ask");
     };
 
+    // [교재목록] 클릭시 목록 반환하는 기능
+    function trBookList(idx) {
+        axios.get(
+            "/login/trBookList?c_idx="+idx
+        ).then((json) => {
+            setBookAr(json.data.ar);
+        });
+    };
+
     useEffect(() => {
         getList();
         getCourseTypeList();
@@ -209,6 +220,7 @@ export default function ctList(props) {
                                             <Button variant="contained" color="success" onClick={() => goEnroll(list.c_idx)}>신청</Button>
                                             <Button variant="contained" color="info" onClick={() => goAsk(list.c_idx)}>문의</Button>
                                             <Button variant="contained" color="secondary" onClick={goCounsel}>상담</Button>
+                                            <Button variant="contained" color="success" onClick={() => trBookList(list.c_idx)}><TrainingBookModal ar={bookAr}/></Button>
                                         </td>
                                     </tr>
                                 </tfoot>

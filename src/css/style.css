@@ -1267,7 +1267,7 @@
 			text-align: center;
 		}
 
-			.sns-login-btn a {
+			.sns-login-btn button, .sns-login-btn a {
 				margin: 0 5px;
 			}
 
@@ -1292,11 +1292,11 @@
 			margin: 30px auto;
 		}
 
-		.login-wrapper .ict-logo h1 {
-			color: #666f77;
-			font-weight: bold;
-			font-size: 1.25em;
-		}
+			.login-wrapper .ict-logo h1 {
+				color: #666f77;
+				font-weight: bold;
+				font-size: 1.25em;
+			}
 
 		.login-table {
 			width: 80%;
@@ -1305,16 +1305,16 @@
 			margin: 10px auto;
 		}
 
-		.login-table tbody tr:last-child td button{
-			background-color: #f74f4f;
-			color: #fff;
-			width: 70%;
-			padding: 10px;
-			border: none;
-			border-radius: 5px;
-		}
+			.login-table tbody tr:last-child td button{
+				background-color: #f74f4f;
+				color: #fff;
+				width: 70%;
+				padding: 10px;
+				border: none;
+				border-radius: 5px;
+			}
 
-		.login-table caption { text-indent: -9999px; height: 0px; }
+			.login-table caption { text-indent: -9999px; height: 0px; }
 		
 		#login-tbody{
 			border-radius: 10px;
@@ -1327,6 +1327,12 @@
 
 		.login-input{
 			background-color: #fff;
+		}
+
+		#naver-login-btn, #kakao-login-btn, #google-login-btn {
+			width: 140px;
+			height: 45px;
+			border: none;
 		}
 	
 	/* 강사 소개 관련 */
@@ -1600,3 +1606,24 @@
 			background-color: #fff;
 		}
 
+	/* 교재목록 관련 */
+		.book-List-wrapper {
+			width: 90%;
+			margin: 30px;
+		}
+
+		#book-List-table {
+			width: 100%;
+			border: 1px solid #dedede;
+			border-collapse: collapse;
+		}
+		
+		#book-List-table thead tr th, #book-List-table tbody tr td{
+			text-align: center;
+			border: 1px solid #dedede;
+			color: #666f77;
+		}
+
+		#book-List-table tbody tr td {
+			font-size: 14px;
+		}
