@@ -1,23 +1,28 @@
 "use client"
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function write(props) {
     const m_idx = `${props.params.m_idx}`
+    const vo = sessionStorage.getItem("m_id");
     const [mem, setMem] = useState([]);
     const api_uri = "/login/getmemberVO";
+    const router = useRouter();
 
-    function getmemberVO() {
+    function berVO() {
         axios.get(
-            api_uri+"?m_idx="+m_idx
+            api_uri+"?m_id="+vo
         ).then((json) => {
+            
             setMem(json.data.ar);
+
         });
     }
 
     useEffect(() => {
-        getmemberVO();
+       berVO();
     }, []);
 
 
@@ -60,7 +65,7 @@ export default function write(props) {
                             <col width="80%" />
                         </colgroup>
                         {mem.map((vo) => (
-                            <tbody id="qna-tbody" key={vo.m_idx} >
+                            <tbody id="qna-tbody" key={vo.m_id} >
                                 <tr>
                                     <td><label htmlFor="m_name">글쓴이:</label></td>
                                     <td><span id="m_name">{vo.m_name}</span></td>
