@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
           <script type="text/javascript" src="js/skel-layers.min.js"></script>
           <script type="text/javascript" src="js/init.js"></script>
           {/* <script type="text/javascript" src="js/ba.js"></script> */}
+          <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
         </head>
       </Header>
       <body className={inter.className}>

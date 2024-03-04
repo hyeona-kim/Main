@@ -4,11 +4,22 @@ import '../../css/skel.css'
 import '../../css/style-xlarge.css'
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { NaverLogin } from '@/component/NaverLogin';
 
 export default function Login() {
     const router = useRouter();
 
     const api_uri = '/login/login';
+
+    function naverCheck() {
+        console.log("naver");
+    };
+    function kakaoCheck() {
+        console.log("kakao");
+    };
+    function googleCheck() {
+        console.log("google");
+    };
 
     function login(){
         const m_id = document.getElementById("login-id-input").value;
@@ -28,13 +39,15 @@ export default function Login() {
                 sessionStorage.setItem("memberVo", json.data.memberVo);
                 sessionStorage.setItem("m_id", json.data.m_id);
                 sessionStorage.setItem("tr_idx", json.data.tr_idx);
-                router.push('/myPage');
+                router.push("/myPage");
             }else {
                 alert("아이디 또는 비밀번호를 잘못 입력했습니다.");
                 return;
             }
         });
-    }
+    };
+
+
     return(
         <div className="login-wrapper">
             {
@@ -62,9 +75,13 @@ export default function Login() {
                         </form>
                         <hr/>
                         <div className="sns-login-btn">
-                            <a type="button" className="button big bg-color-naver">네이버</a>
+                            {/* <a type="button" className="button big bg-color-naver">네이버</a>
                             <a type="button" className="button big bg-color-kakao">카카오</a>
-                            <a type="button" className="button big bg-color-google">구글</a>
+                            <a type="button" className="button big bg-color-google">구글</a> */}
+                            <NaverLogin/>
+                            {/* <button type="button" id='naver-login-btn' onClick={() => naverCheck()}><img src='images\naver-login.png' style={{width: '100%', height: '100%'}}/></button> */}
+                            <button type="button" id='kakao-login-btn' onClick={() => kakaoCheck()}><img src='images\kakao-login.png' style={{width: '100%', height: '100%'}}/></button>
+                            <button type="button" id='google-login-btn' onClick={() => googleCheck()}><img src='images\google-login.png' style={{width: '100%', height: '100%'}}/></button>
                         </div>
                     </div>
                 : <div className='login-box'><p>로그인 완료</p></div>
