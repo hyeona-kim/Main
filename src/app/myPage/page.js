@@ -1,13 +1,23 @@
 "use client"
 import EditModal from "@/component/EditModal";
+import TrainingBookModal from "@/component/TrainingBookModal";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function myPage() {
     const [courseAr, setCourseAr] = useState([]);
+    const [bookAr, setBookAr] = useState([]);
     const api_uri = "/login/myCourse";
     const m_id = sessionStorage.getItem("m_id");
+
+    function trBookList(idx) {
+        axios.get(
+            "/login/trBookList?c_idx="+idx
+        ).then((json) => {
+            setBookAr(json.data.ar);
+        });
+    }
 
     useEffect(function() {
         axios.get(
@@ -60,7 +70,7 @@ export default function myPage() {
                             <tfoot>
                                 <tr>
                                     <td colSpan={3}> 
-                                        <Button variant="contained" color="success">신청</Button>
+                                        <Button variant="contained" color="success" onClick={() => trBookList(list.c_idx)}><TrainingBookModal ar={bookAr}/></Button>
                                     </td>
                                 </tr>
                             </tfoot>

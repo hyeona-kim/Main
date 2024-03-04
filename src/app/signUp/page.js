@@ -5,11 +5,13 @@ import '../../css/style-xlarge.css'
 import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { NaverLogin } from '@/component/NaverLogin';
 
 export default function signUp() {
     const api_uri = '/login/regMember';
     const router = useRouter();
-    const [flag, setFlag] = useState(false);
+    const [id_flag, setIdFlag] = useState(false);
+    const [email_flag, setEmailFlag] = useState(false);
 
     function regMember(){
         const m_id = document.getElementById("m_id").value;
@@ -27,12 +29,28 @@ export default function signUp() {
             alert("비밀번호를 입력하세요");
             return;
         }
+        if(!m_email.trim().length > 0) {
+            alert("이메일을 입력하세요");
+            return;
+        }
         if(!m_name.trim().length > 0) {
             alert("이름을 입력하세요");
             return;
         }
         if(m_phone.trim().length != 13) {
             alert("연락처를 정확히 입력하세요");
+            return;
+        }
+        
+        // 중복된 id이면 회원가입 block
+        if(id_flag) {
+            alert("아이디가 중복됩니다.")
+            return;
+        }
+
+        // 중복된 email이면 회원가입 block
+        if(email_flag) {
+            alert("이메일이 중복됩니다.")
             return;
         }
 
@@ -48,8 +66,7 @@ export default function signUp() {
         });
     }
 
-    // 회원가입시 중복체크 기능 다시 확인해야함
-    // 정상적으로 작동안함 (하나씩 밀리면서 작업됨)
+    // 회원가입시 id 중복체크 기능
     function checkSameId() {
         const m_id = document.getElementById("m_id").value;
         const element = document.getElementById("check-text");
@@ -58,13 +75,32 @@ export default function signUp() {
             "/login/checkSameId?m_id="+m_id,
         ).then(json => {
             if(json.data) { // data가 True면 중복, False면 중복아님
-                element.innerHTML = "<div className='font-color-red'>중복입니다.</div>";
-                setFlag(true);
+                element.innerHTML = "<div>중복입니다.</div>";
+                element.style.setProperty('color', 'red');
+                setIdFlag(true);
             }else{
-                element.innerHTML = "<div className='font-color-blue'>중복되지 않습니다.</div>";
-                setFlag(false);
+                element.innerHTML = "<div>중복되지 않습니다.</div>";
+                element.style.setProperty('color', 'blue');
+                setIdFlag(false);
             }
-            // console.log(flag);
+        });
+    }
+
+    // [중복체크] 클릭시 email 중복체크 기능
+    function checkEmail() {
+        const m_email = document.getElementById("m_email").value;
+
+        axios.get(
+            "/login/checkSameEmail?m_email="+m_email
+        ).then(json => { // data가 True면 중복, False면 중복아님
+            if(json.data) {
+                setEmailFlag(true);
+                alert("중복됩니다 변경하세요");
+                return;
+            }else {
+                setEmailFlag(false);
+                alert("중복되지 않습니다 그대로 진행하세요");
+            }
         });
     }
 
@@ -89,7 +125,8 @@ export default function signUp() {
                                 <td colSpan={2}><input type="password" id="m_pw" className="login-input" placeholder="비밀번호"/></td>
                             </tr>
                             <tr>
-                                <td colSpan={2}><input type="text" id="m_email" className="login-input" placeholder="(선택)이메일"/></td>
+                                <td><input type="text" id="m_email" className="login-input" placeholder="이메일"/></td>
+                                <td><button className="button" onClick={() => checkEmail()}>중복체크</button></td>
                             </tr>
                             <tr>
                                 <td colSpan={2}><input type="text" id="m_name" className="login-input" placeholder="이름"/></td>
@@ -104,7 +141,8 @@ export default function signUp() {
                     </table>
                 <hr/>
                 <div className="sns-login-btn">
-                    <a type="button" className="button big bg-color-naver">네이버</a>
+                    {/* <a type="button" className="button big bg-color-naver">네이버</a> */}
+                    <NaverLogin/>
                     <a type="button" className="button big bg-color-kakao">카카오</a>
                     <a type="button" className="button big bg-color-google">구글</a>
                 </div>
