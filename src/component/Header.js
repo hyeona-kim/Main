@@ -66,6 +66,7 @@ export default function Header(){
                         <ul className="dropdown">
                             <li><a href="/online" className="menu-name">온라인상담</a></li>
                             <li><a href="/Qna" className="menu-name">Q&A</a></li>
+                            <li><a href="/test" className="menu-name">test</a></li>
                         </ul>
                     </li>
 
