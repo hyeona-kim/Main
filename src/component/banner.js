@@ -2,9 +2,6 @@ import '../css/style.css'
 import '../css/skel.css'
 import '../css/style-xlarge.css'
 
-
-
-
 export default function Banner() {
   return (
 
