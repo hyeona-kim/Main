@@ -3,20 +3,21 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export default function NaverAuth(props) {
+export default function GoogleAuth(props) {
     const router = useRouter();
     
     useEffect(function() {
-        let code = new URL(window.location.href).searchParams.get("code");
-        let state = new URL(window.location.href).searchParams.get("state");
-
-        axios.post(
-            "/login/naverLogin?code="+code+"&state="+state
+        const parsedHash = new URLSearchParams(window.location.hash.substring(1));
+        const access_token = parsedHash.get("access_token");
+        axios.get(
+            "/login/googleLogin?token="+access_token,
         ).then((json) => {
             if(json.data.checkFlag){
                 sessionStorage.setItem("memberVo", json.data.memberVo);
                 sessionStorage.setItem("m_id", json.data.memberVo.m_id);
-                sessionStorage.setItem("tr_idx", json.data.memberVo.tr_idx);
+                if(json.data.memberVo.tr_idx != null){
+                    sessionStorage.setItem("tr_idx", json.data.memberVo.tr_idx);
+                }
                 router.push("/myPage");
                 router.refresh();
             }else {

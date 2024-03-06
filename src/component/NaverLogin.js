@@ -1,8 +1,7 @@
-import axios from "axios";
 import React from "react";
 
 export const NaverLogin = () => {
-    // const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
+    // const NAVER_CLIENT_ID = `${process.env.REACT_APP_NAVER_CLIENT_ID}`;
     const NAVER_CLIENT_ID = "Xcta2ntEsGR7Vtf5pcVC";
     const REDIRECT_URI = "http://localhost:3000/naverAuth";
     const STATE = "Random_State";
@@ -10,11 +9,7 @@ export const NaverLogin = () => {
 
     function NaverLogin() {
         window.location.href = NAVER_AUTH_URL;
-        // axios.get(
-        //     NAVER_AUTH_URL
-        // ).then(json => {
-        //     console.log(json);
-        // });
+        // console.log(NAVER_CLIENT_ID);
     };
 
     return(
