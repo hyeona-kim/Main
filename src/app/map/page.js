@@ -1,5 +1,5 @@
 "use client"
-import Banner from "@/component/banner";
+import Banner from "@/component/Banner";
 import { useEffect } from "react";
 
 
