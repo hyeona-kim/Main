@@ -107,7 +107,7 @@ Row.propTypes = {
 
 export default function CollapsibleTable(props) {
 
-    const api_uri = '/login/getqnaList'
+    const api_uri = '/login/getqnaList44'
 
     const [qnaAr,setQnaAr] = useState([]);
     const [comAr,setComAr] = useState([]);
@@ -145,8 +145,8 @@ export default function CollapsibleTable(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {qnaAr.map((row) => (
-                            <Row key={row.name} row={row} />
+                        {qnaAr.map((list) => (
+                            <Row key={list.qna_idx} row={Row} />
                         ))}
                     </TableBody>
                 </Table>

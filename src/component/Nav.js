@@ -116,29 +116,18 @@ export default function Nav(props) {
 				</header>
 				<div className="container">
 					<div className="row">
-						<div className="4u">
-							<section className="special box">
-							<i className="icon fa-refresh major"/>
-								<div className="courseTypeList-box">
-									<Tabs value={idx} onChange={handleChange} aria-label="nav tabs example" variant="fullWidth" role="navigation" centered>
-										{courseTypeAr.map((list) => (
+						<div className="12u">
+							<div className="courseTypeList-box">
+								<Tabs value={idx} onChange={handleChange} aria-label="nav tabs example" variant="fullWidth" role="navigation" centered>
+									{courseTypeAr.map((list) => (
+										<section className="special box" style={{margin:'auto', backgroundColor:'#f8f8f8'}}>
+											<i className="icon fa-refresh major" />
 											<Tab key={list.ct_idx} onClick={() => goPage(list.ct_idx)} label={list.ct_name} {...a11yProps(list.ct_idx)} />
-										))}
-									</Tabs>
-								</div>
-							</section>
-						</div>
-						<div className="4u">
-							<section className="special box"><i className="icon fa-refresh major"></i>
-								<h3>Blandit quis curae</h3>
-								<p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
-							</section>
-						</div>
-						<div className="4u">
-							<section className="special box"><i className="icon fa-cog major"></i>
-								<h3>Amet sed accumsan</h3>
-								<p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
-							</section>
+										</section>
+									))}
+								</Tabs>
+							</div>
+
 						</div>
 					</div>
 				</div>
