@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { NaverLogin } from '@/component/NaverLogin';
+import { KakaoLogin } from '@/component/KakaoLogin';
 
 export default function signUp() {
     const api_uri = '/login/regMember';
@@ -142,8 +143,9 @@ export default function signUp() {
                 <hr/>
                 <div className="sns-login-btn">
                     {/* <a type="button" className="button big bg-color-naver">네이버</a> */}
+                    {/* <a type="button" className="button big bg-color-kakao">카카오</a> */}
                     <NaverLogin/>
-                    <a type="button" className="button big bg-color-kakao">카카오</a>
+                    <KakaoLogin/>
                     <a type="button" className="button big bg-color-google">구글</a>
                 </div>
             </div>

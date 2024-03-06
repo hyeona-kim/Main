@@ -5,20 +5,26 @@ import '../../css/style-xlarge.css'
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { NaverLogin } from '@/component/NaverLogin';
+import { KakaoLogin } from '@/component/KakaoLogin';
+import { useEffect } from 'react';
+import { GoogleLogin } from '@/component/GoogleLogin';
 
 export default function Login() {
     const router = useRouter();
 
     const api_uri = '/login/login';
+    const googleLogin_uri = "https://accounts.google.com/o/oauth2/v2/auth?" +
+                    "client_id=921898621652-9ipomq19a4p88ofgn8ilhhb2gd0ea92c.apps.googleusercontent.com&"+
+                    "redirect_uri=http://localhost:3000/login&"+
+                    "response_type=token&"+
+                    "scope=https://www.googleapis.com/auth/drive.metadata.readonly";
 
-    function naverCheck() {
-        console.log("naver");
-    };
-    function kakaoCheck() {
-        console.log("kakao");
-    };
-    function googleCheck() {
-        console.log("google");
+    function googleLogin() {
+        axios.get(
+            googleLogin_uri,
+        ).then(json => {
+            console.log(json);
+        });
     };
 
     function login(){
@@ -46,6 +52,19 @@ export default function Login() {
             }
         });
     };
+
+    function checkLogin() {
+        const vo = sessionStorage.getItem("memberVo");
+        if(vo != null){
+            router.push("/myPage");
+        }else {
+            router.push("/login");
+        }
+    };
+
+    useEffect(function(){
+        checkLogin();
+    },[]);
 
 
     return(
@@ -76,12 +95,13 @@ export default function Login() {
                         <hr/>
                         <div className="sns-login-btn">
                             {/* <a type="button" className="button big bg-color-naver">네이버</a>
-                            <a type="button" className="button big bg-color-kakao">카카오</a>
-                            <a type="button" className="button big bg-color-google">구글</a> */}
-                            <NaverLogin/>
-                            {/* <button type="button" id='naver-login-btn' onClick={() => naverCheck()}><img src='images\naver-login.png' style={{width: '100%', height: '100%'}}/></button> */}
                             <button type="button" id='kakao-login-btn' onClick={() => kakaoCheck()}><img src='images\kakao-login.png' style={{width: '100%', height: '100%'}}/></button>
-                            <button type="button" id='google-login-btn' onClick={() => googleCheck()}><img src='images\google-login.png' style={{width: '100%', height: '100%'}}/></button>
+                            <a type="button" className="button big bg-color-google">구글</a> */}
+                            {/* <a type="button" id="kakao-login-btn" className="button big bg-color-kakao"><img src='images\kakao-login.png' style={{width: '140px', height: '100%'}}/></a> */}
+                            {/* <button type="button" id='google-login-btn' onClick={() => googleLogin()}><img src='images\google-login.png' style={{width: '100%', height: '100%'}}/></button> */}
+                            <NaverLogin/>
+                            <KakaoLogin/>
+                            <GoogleLogin/>
                         </div>
                     </div>
                 : <div className='login-box'><p>로그인 완료</p></div>
