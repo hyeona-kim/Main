@@ -12,7 +12,7 @@
 - 팀장 [정재영](https://github.com/jeongjjy) jeongjjy
 - 팀원 [이가은](https://github.com/lkeeeeeee)Lee Ga Eun  
 - 팀원 [조성훈](https://github.com/sannabie) sannabie - 회원 페이지 구현 , 회원 DB 설계 및 구축 , 회원가입 기능 구현 , 마이페이지 기능 구현 , 수강신청 기능 구현 , 로그인 기능 구현 , 과정 내 과목 검색 기능 구현 , SNS로그인 기능 구현, 형상관리 
-- 팀원 [김현아](https://github.com/hyeona-kim) hyeona-kim - 메인 페이지 구현 , Q&A 및 온라인 상담 DB 설계 및 구축, 메인 배너 구현 ,CSS 수정, 형상관리
+- 팀원 [김현아](https://github.com/hyeona-kim) hyeona-kim - 메인 페이지 구현 , Q&A 및 온라인 상담 DB 설계 및 구축, 메인 롤링 배너 구현 , 전체적인 CSS 관리 , 형상관리
 - 팀원 [우선우](https://github.com/tanksoda) tanksoda 
 - 팀원 [윤상기](https://github.com/sangkiYoon) sangkiYoon 
 
