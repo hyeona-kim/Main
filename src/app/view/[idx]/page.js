@@ -20,6 +20,7 @@ export default function Page(props) {
     const [mem, setMem] = useState([]);
     const api_uri2 = "/login/getmemberVO";
     const api_uri3 = `/login/qna/commList?qna_idx=${idx}`;
+    const api_uri4 = "/login/qna/del";
     const router = useRouter();
 
 
@@ -29,7 +30,7 @@ export default function Page(props) {
         ).then((json) => {
             setMem(json.data.ar);
             if (vo2 === null ||  vo2 !== vo.m_id) {
-                alert("접근권환이 없습니다.")
+                alert("접근권한이 없습니다.")
                 router.push('/view/' + vo.qna_idx)
             } else {
                 router.push("/edit/" + vo.qna_idx + "/" + vo2)
@@ -38,7 +39,17 @@ export default function Page(props) {
     }
     
     function delIdentity() {
-
+        axios.get(
+            api_uri4 + "?qna_idx"+vo2
+        ).then((json)=>{
+            setMem(json.data.ar);
+            if(vo2 === null || vo2 !== vo.m_id){
+                alert("삭제권한이 없습니다")
+                router.push('/view'+vo.qna_idx)
+            }else{
+                router.push("/Qna")
+            }
+        })
     }
 
 

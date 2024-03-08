@@ -14,7 +14,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useRouter } from "next/navigation";
-import { Button, Card, CardActionArea, CardContent, CardMedia, Divider, Stack } from "@mui/material";
+import { Button, Card, CardActionArea, CardContent, CardMedia, Divider, Link, Stack } from "@mui/material";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
@@ -146,64 +146,68 @@ export default function Nav(props) {
 					<div className="row">
 						<div className="12u">
 							<div className="courseTypeList-box">
-								
+
 								{/* 교육과정이 없을때 여기를 수행 */}
 								{courseTypeAr.map((list) => (
-									<div style={{ display:'inline-block', width:'300px', margin:'auto'}} >
+									<div style={{ display: 'inline-block', width: '300px', margin: 'auto' }} >
 										{
 											list.cvo === null
 												?
 												<Stack direction="row" >
-													<Box  >
-														<Card sx={{ width: 280, marginTop:'10px'}}>
-															<CardActionArea>
-																{/* 이미지 */}
-																<CardMedia
-																	component="img"
-																	height="140"
-																	image="/static/images/cards/contemplative-reptile.jpg"
-																	alt="green iguana"
-																/>
+													<Box>
+														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)}  {...a11yProps(list.ct_idx)} style={{ textDecoration: "none"}}>
+															<Card sx={{ width: 280, marginTop: '10px' }}>
+																<CardActionArea>
+																	{/* 이미지 */}
+																	<CardMedia
+																		component="img"
+																		height="140"
+																		image="../images/ict_logo.png"
+																		alt="green iguana"
+																	/>
 
-																<CardContent>
-																	<Typography gutterBottom variant="h5" component="div" value={idx} >
-																		교육과정이 없습니다
-																	</Typography>
-																	<Typography variant="body2" color="text.secondary">
-																		교육기간 : 준비중 <br/>
-																		교육요일 : 준비중
-																	</Typography>
-																</CardContent>
-															</CardActionArea>
-														</Card>
+																	<CardContent>
+																		<Typography gutterBottom variant="h5" component="div" value={idx} >
+																			교육과정이 없습니다
+																		</Typography>
+																		<Typography variant="body2" color="text.secondary">
+																			교육기간 : 준비중 <br />
+																			교육요일 : 준비중
+																		</Typography>
+																	</CardContent>
+																</CardActionArea>
+															</Card>
+														</Link>
 													</Box>
 												</Stack>
 
 												:
 
-												<Stack  direction="row" >
-													<Box >
-														<Card sx={{ width: 280, marginTop:'10px'}}>
-															<CardActionArea>
-																{/* 이미지 */}
-																<CardMedia
-																	component="img"
-																	height="140"
-																	image="/static/images/cards/contemplative-reptile.jpg"
-																	alt="green iguana"
-																/>
+												<Stack direction="row" >
+													<Box>
+														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)} {...a11yProps(list.ct_idx)} style={{ textDecoration: "none"}}>
+															<Card sx={{ width: 280, marginTop: '5px' }}>
+																<CardActionArea>
+																	{/* 이미지 */}
+																	<CardMedia
+																		component="img"
+																		height="140"
+																		image="../images/nav1.png"
+																		alt="green iguana"
+																	/>
 
-																<CardContent>
-																	<Typography gutterBottom variant="h5" component="div" value={idx}  >
-																		{list.cvo.c_name}
-																	</Typography>
-																	<Typography variant="body2" color="text.secondary">
-																		교육기간 : {list.cvo.start_date}~{list.cvo.end_date}<br />
-																		교육요일 : {list.cvo.c_day}
-																	</Typography>
-																</CardContent>
-															</CardActionArea>
-														</Card>
+																	<CardContent>
+																		<Typography gutterBottom variant="h5" component="div" value={idx}  >
+																			{list.cvo.c_name}
+																		</Typography>
+																		<Typography variant="body2" color="text.secondary">
+																			교육기간 : {list.cvo.start_date}~{list.cvo.end_date}<br />
+																			교육요일 : {list.cvo.c_day}
+																		</Typography>
+																	</CardContent>
+																</CardActionArea>
+															</Card>
+														</Link>
 													</Box>
 												</Stack>
 										}
@@ -257,9 +261,7 @@ export default function Nav(props) {
 							<section>
 								<h2>공지사항</h2>
 								<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>
-								<ul className="actions">
-									<li><a href="#" className="button alt">Learn More</a></li>
-								</ul>
+								<img src='../images/v.jpeg'></img>
 							</section>
 						</div>
 					</div>
