@@ -17,8 +17,9 @@ export default function Header(){
         });
     };
 
-    function goCtList(idx) {
-        router.push('/ctList/'+idx);
+    function goCtList(index, idx) {
+        console.log(index)
+        router.push('/ctList/'+idx+'/'+index);
     };
 
     function logout() {
@@ -56,8 +57,8 @@ export default function Header(){
                         <a href="#" className="menu-name">교육과정</a>
                         <ul className="dropdown">
                     {/* 반복문을 이용해 교육과정 목록 출력 */}
-                        {ar.map((list) => (
-                            <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(list.ct_idx)}>{list.ct_name}</button></li>
+                        {ar.map((list,index) => (
+                            <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(index,list.ct_idx)}>{list.ct_name}</button></li>
                         ))}
                         </ul>
                     </li>

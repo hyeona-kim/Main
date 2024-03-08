@@ -40,7 +40,7 @@ export default function Page(props) {
     
     function delIdentity() {
         axios.get(
-            api_uri4 + "?qna_idx"+vo2
+            api_uri4 + "?qna_idx="+vo.qna_idx
         ).then((json)=>{
             setMem(json.data.ar);
             if(vo2 === null || vo2 !== vo.m_id){
@@ -51,9 +51,6 @@ export default function Page(props) {
             }
         })
     }
-
-
-
 
     function getData() {
         axios.get(
@@ -124,21 +121,41 @@ export default function Page(props) {
                             </tr>
                         </tfoot>
                     </table>
+                    {ar === null 
+                    ? 
                     <table className="comm-table">
-                        <caption>답변 테이블</caption>
-                        <colgroup>
-                            <col width={"20%"} />
-                            <col width={"80%"} />
-                        </colgroup>
-                        <tbody>
-                            {ar.map((ar) => (
-                                <tr key={ar.cm_idx}>
-                                    <td><label style={{ backgroundColor: 'yellow' }}>답변:</label></td>
-                                    <td><textarea value={ar.cm_content} readOnly></textarea></td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <caption>답변 테이블</caption>
+                    <colgroup>
+                        <col width={"20%"} />
+                        <col width={"80%"} />
+                    </colgroup>
+                    <tbody>
+                        
+                            <tr >
+                                <td><label style={{ backgroundColor: 'yellow' }}>답변:</label></td>
+                                <td><textarea  readOnly>아직 답변이 없습니다 </textarea></td>
+                            </tr>
+                  
+                    </tbody>
+                </table>
+                    :
+                    <table className="comm-table">
+                    <caption>답변 테이블</caption>
+                    <colgroup>
+                        <col width={"20%"} />
+                        <col width={"80%"} />
+                    </colgroup>
+                    <tbody>
+                        {ar.map((ar) => (
+                            <tr key={ar.cm_idx}>
+                                <td><label style={{ backgroundColor: 'yellow' }}>답변:</label></td>
+                                <td><textarea value={ar.cm_content} readOnly></textarea></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                    }
+                   
                 </div>
             </div>
 
