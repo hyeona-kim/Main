@@ -14,7 +14,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useRouter } from "next/navigation";
-import { Button, Card, CardActionArea, CardContent, CardMedia, Divider, Link, Stack } from "@mui/material";
+import { Button, Card, CardActionArea, CardContent, CardMedia, Divider, Icon, Link, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 
@@ -155,7 +155,7 @@ export default function Nav(props) {
 												?
 												<Stack direction="row" >
 													<Box>
-														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)}  {...a11yProps(list.ct_idx)} style={{ textDecoration: "none"}}>
+														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)}  {...a11yProps(list.ct_idx)} style={{ textDecoration: "none" }}>
 															<Card sx={{ width: 280, marginTop: '10px' }}>
 																<CardActionArea>
 																	{/* 이미지 */}
@@ -185,7 +185,7 @@ export default function Nav(props) {
 
 												<Stack direction="row" >
 													<Box>
-														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)} {...a11yProps(list.ct_idx)} style={{ textDecoration: "none"}}>
+														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)} {...a11yProps(list.ct_idx)} style={{ textDecoration: "none" }}>
 															<Card sx={{ width: 280, marginTop: '5px' }}>
 																<CardActionArea>
 																	{/* 이미지 */}
@@ -240,7 +240,7 @@ export default function Nav(props) {
 				</div>
 			</section>
 
-
+			{/* 캘린더 */}
 			<section id="three" className="wrapper style1">
 				<div className="container">
 					<div className="row">
@@ -257,11 +257,24 @@ export default function Nav(props) {
 								/>
 							</section>
 						</div>
+						{/* 취업현황 게시판 */}
 						<div className="6u">
 							<section>
-								<h2>공지사항</h2>
-								<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>
-								<img src='../images/v.jpeg'></img>
+								<h2>취업 현황</h2>
+								<TableContainer component={Paper}>
+									<Table aria-label="qna table">
+										<TableBody>
+											<TableRow
+												sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+											>
+												{/* <TableCell component="th" scope="row"></TableCell> */}
+												<TableCell align="left" ><i class="icon fa-heart"></i>&nbsp;이름</TableCell>
+												<TableCell align="center">212313</TableCell>
+												<TableCell align="right">2020-02-21</TableCell>
+											</TableRow>
+										</TableBody>
+									</Table>
+								</TableContainer>
 							</section>
 						</div>
 					</div>
