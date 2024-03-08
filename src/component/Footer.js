@@ -12,7 +12,7 @@ export default function Footer() {
 					<div className="row double">
 						<div className="6u">
 							<a href="/" className="image fit">
-								<img src="images/ict_logo.png" alt="footerlogo" />
+								<img src="../../images/ict_logo.png" alt="footerlogo" />
 							</a><br />
 							<div className='row'>
 								<div className='6u'>

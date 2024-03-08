@@ -40,7 +40,7 @@ export default function Header(){
         <>
         <header id="header" className="skel-layers-fixed">
             <h1>
-                <a href="/"><img src='images/ict_logo.png'></img></a>
+                <a href="/"><img src='../../images/ict_logo.png'></img></a>
             </h1>
             <nav id="nav">
                 <ul id="menu">
@@ -66,7 +66,6 @@ export default function Header(){
                         <ul className="dropdown">
                             <li><a href="/online" className="menu-name">온라인상담</a></li>
                             <li><a href="/Qna" className="menu-name">Q&A</a></li>
-                            <li><a href="/test" className="menu-name">test</a></li>
                         </ul>
                     </li>
 
