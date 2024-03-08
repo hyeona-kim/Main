@@ -14,30 +14,49 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useRouter } from "next/navigation";
-import { Button } from "@mui/material";
+import { Button, Card, CardActionArea, CardContent, CardMedia, Divider, Stack } from "@mui/material";
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 
 export default function Nav(props) {
 
 	// uri에 변수를 사용하기 위해 그레이브(`) 사용해야한다
-	const api_uri3 = '/login/getCtList';
 	const api_uri2 = '/login/getCtList';
+	// const api_uri = `/login/ctList?ct_idx=${props.params.idx}`; 
+	// const ct_idx = `${props.params.idx}`;
+
+	//캘린더 
+	const [calendar, setCalendar] = useState([]);
+	const api_uri4 = '/list';
 
 	const [courseAr, setCourseAr] = useState([]);
 	const [courseTypeAr, setCourseTypeAr] = useState([]);
 	const [ar, setAr] = useState([]);
 
 
-	// const ct_idx = `${props.params.idx}`;
 	const router = useRouter();
 	const [idx, setValue] = React.useState(0);
 
+	const handleChange = (event, idx) => {
+		setValue(idx);
+	};
 
 	function getCourseTypeList() {
 		axios.get(
 			api_uri,
 		).then(json => {
+			console.log(json.data.courseTypeAr);
 			setAr(json.data.courseTypeAr);
+		});
+	};
+
+	// 해당 과정에 속하는 과목 목록 가져오는 기능
+	function getList() {
+		axios.get(
+			api_uri,
+		).then((json) => {
+			setCourseAr(json.data.courseAr);
 		});
 	};
 
@@ -49,9 +68,6 @@ export default function Nav(props) {
 	////////////////////////////////
 
 
-	const handleChange = (event, idx) => {
-		setValue(idx);
-	};
 
 	function CustomTabPanel(props) {
 		const { children, idx, index, ...other } = props;
@@ -93,6 +109,7 @@ export default function Nav(props) {
 			api_uri2,
 		).then(json => {
 			setCourseTypeAr(json.data.courseTypeAr);
+			console.log(json.data.courseTypeAr);
 		});
 	};
 
@@ -101,11 +118,22 @@ export default function Nav(props) {
 		router.push("/ctList/" + idx);
 	};
 
+	function getData3() {
+		axios.get(
+			api_uri4
+		).then((json) => {
+			console.log(json.data);
+			setCalendar(json.data)
+		});
+	}
+
 
 	useEffect(() => {
-
 		getCourseTypeList();
+		getData3();
+		// getList();
 	}, []);
+
 
 
 	return (
@@ -118,14 +146,69 @@ export default function Nav(props) {
 					<div className="row">
 						<div className="12u">
 							<div className="courseTypeList-box">
-								<Tabs value={idx} onChange={handleChange} aria-label="nav tabs example" variant="fullWidth" role="navigation" centered>
-									{courseTypeAr.map((list) => (
-										<section className="special box" style={{margin:'auto', backgroundColor:'#f8f8f8'}}>
-											<i className="icon fa-refresh major" />
-											<Tab key={list.ct_idx} onClick={() => goPage(list.ct_idx)} label={list.ct_name} {...a11yProps(list.ct_idx)} />
-										</section>
-									))}
-								</Tabs>
+								
+								{/* 교육과정이 없을때 여기를 수행 */}
+								{courseTypeAr.map((list) => (
+									<div style={{ display:'inline-block', width:'300px', margin:'auto'}} >
+										{
+											list.cvo === null
+												?
+												<Stack direction="row" >
+													<Box  >
+														<Card sx={{ width: 280, marginTop:'10px'}}>
+															<CardActionArea>
+																{/* 이미지 */}
+																<CardMedia
+																	component="img"
+																	height="140"
+																	image="/static/images/cards/contemplative-reptile.jpg"
+																	alt="green iguana"
+																/>
+
+																<CardContent>
+																	<Typography gutterBottom variant="h5" component="div" value={idx} >
+																		교육과정이 없습니다
+																	</Typography>
+																	<Typography variant="body2" color="text.secondary">
+																		교육기간 : 준비중 <br/>
+																		교육요일 : 준비중
+																	</Typography>
+																</CardContent>
+															</CardActionArea>
+														</Card>
+													</Box>
+												</Stack>
+
+												:
+
+												<Stack  direction="row" >
+													<Box >
+														<Card sx={{ width: 280, marginTop:'10px'}}>
+															<CardActionArea>
+																{/* 이미지 */}
+																<CardMedia
+																	component="img"
+																	height="140"
+																	image="/static/images/cards/contemplative-reptile.jpg"
+																	alt="green iguana"
+																/>
+
+																<CardContent>
+																	<Typography gutterBottom variant="h5" component="div" value={idx}  >
+																		{list.cvo.c_name}
+																	</Typography>
+																	<Typography variant="body2" color="text.secondary">
+																		교육기간 : {list.cvo.start_date}~{list.cvo.end_date}<br />
+																		교육요일 : {list.cvo.c_day}
+																	</Typography>
+																</CardContent>
+															</CardActionArea>
+														</Card>
+													</Box>
+												</Stack>
+										}
+									</div>
+								))}
 							</div>
 
 						</div>
@@ -159,9 +242,15 @@ export default function Nav(props) {
 					<div className="row">
 						<div className="6u">
 							<section>
-								<h2>캘린더 자리</h2>
-								<a href="#" className="image fit"><img src="images/pic03.jpg" alt="logo3" width="818" height="340" /></a>
-								<p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
+								<FullCalendar
+									defaultView="dayGridMonth"
+									plugins={[dayGridPlugin]}
+									events={calendar}
+									dayMaxEventRows={true}
+								// eventSources={[
+								// 	googlecalender
+								// ]}
+								/>
 							</section>
 						</div>
 						<div className="6u">
