@@ -17,9 +17,15 @@ export default function Header(){
         });
     };
 
+<<<<<<< HEAD
     function goCtList(idx) {
         router.push('/ctList/'+idx);
         router.refresh();
+=======
+    function goCtList(index, idx) {
+        console.log(index)
+        router.push('/ctList/'+idx+'/'+index);
+>>>>>>> bd2cdac4e3707fc6997127d1fa3fdf6b87c7f14e
     };
 
     function logout() {
@@ -41,7 +47,7 @@ export default function Header(){
         <>
         <header id="header" className="skel-layers-fixed">
             <h1>
-                <a href="/"><img src='images/ict_logo.png'></img></a>
+                <a href="/"><img src='../../images/ict_logo.png'></img></a>
             </h1>
             <nav id="nav">
                 <ul id="menu">
@@ -57,8 +63,8 @@ export default function Header(){
                         <a href="#" className="menu-name">교육과정</a>
                         <ul className="dropdown">
                     {/* 반복문을 이용해 교육과정 목록 출력 */}
-                        {ar.map((list) => (
-                            <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(list.ct_idx)}>{list.ct_name}</button></li>
+                        {ar.map((list,index) => (
+                            <li key={list.ct_idx}><button className="menu-name" onClick={() => goCtList(index,list.ct_idx)}>{list.ct_name}</button></li>
                         ))}
                         </ul>
                     </li>
@@ -67,7 +73,6 @@ export default function Header(){
                         <ul className="dropdown">
                             <li><a href="/online" className="menu-name">온라인상담</a></li>
                             <li><a href="/Qna" className="menu-name">Q&A</a></li>
-                            <li><a href="/test" className="menu-name">test</a></li>
                         </ul>
                     </li>
 

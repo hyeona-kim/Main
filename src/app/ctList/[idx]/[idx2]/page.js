@@ -13,6 +13,8 @@ import TrainingBookModal from "@/component/TrainingBookModal";
 
 export default function ctList(props) {
     // uri에 변수를 사용하기 위해 그레이브(`) 사용해야한다
+    const idx2 =  props.params.idx2;
+    const idx3 = Number(idx2);
     const api_uri = `/login/ctList?ct_idx=${props.params.idx}`; 
     const api_uri2 = '/login/getCtList';
     const [courseAr, setCourseAr] = useState([]);
@@ -23,9 +25,9 @@ export default function ctList(props) {
 
     const [idx, setValue] = React.useState(0);
 
-    const handleChange = (event, idx) => {
-        setValue(idx);
-    };
+    // const handleChange = (event, idx) => {
+    //     setValue(idx);
+    // };
 
     function CustomTabPanel(props) {
         const { children, idx, index, ...other } = props;
@@ -53,12 +55,6 @@ export default function ctList(props) {
         value: PropTypes.number.isRequired,
     };
 
-    function a11yProps(index) {
-        return {
-          id: `simple-tab-${index}`,
-          'aria-controls': `simple-tabpanel-${index}`,
-        };
-    };
 
     // 해당 과정에 속하는 과목 목록 가져오는 기능
     function getList() {
@@ -69,6 +65,9 @@ export default function ctList(props) {
         });
     };
         
+    useEffect(() => {
+        console.log(idx3);
+    }, [courseAr]);
     // 위에 탭 넣기위해 교육과정 목록 가져오는 기능
     function getCourseTypeList(){
         axios.get(
@@ -79,8 +78,8 @@ export default function ctList(props) {
     };
 
     // 탭 눌렀을때 이동하는 기능
-    function goPage(idx) {
-        router.push("/ctList/"+idx);
+    function goPage(idx,index) {
+        router.push("/ctList/"+idx+"/"+index);
     };
 
     // [검색]할때 오류 안나게 최상위 컴포넌트로 만드는 함수
@@ -149,9 +148,9 @@ export default function ctList(props) {
                 <div className="courseTypeList-box">
                 <Box sx={{ width: '100%' }}>
                     <Box sx={{ borderBottom: 2, borderColor: 'divider'}}>
-                        <Tabs value={idx} onChange={handleChange} aria-label="basic tabs example" variant="fullWidth" centered>
-                            {courseTypeAr.map((list) => (
-                                <Tab key={list.ct_idx} onClick={()=>goPage(list.ct_idx)} label={list.ct_name} {...a11yProps(list.ct_idx)}/>
+                        <Tabs value={idx3}  aria-label="basic tabs example" variant="fullWidth" centered>
+                            {courseTypeAr.map((list,index) => (
+                                <Tab key={list.ct_idx} onClick={()=>goPage(list.ct_idx,index)} label={list.ct_name}  />
                             ))}
                         </Tabs>
                     </Box>

@@ -14,30 +14,49 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useRouter } from "next/navigation";
-import { Button } from "@mui/material";
+import { Button, Card, CardActionArea, CardContent, CardMedia, Divider, Icon, Link, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 
 export default function Nav(props) {
 
 	// uri에 변수를 사용하기 위해 그레이브(`) 사용해야한다
-	const api_uri3 = '/login/getCtList';
 	const api_uri2 = '/login/getCtList';
+	// const api_uri = `/login/ctList?ct_idx=${props.params.idx}`; 
+	// const ct_idx = `${props.params.idx}`;
+
+	//캘린더 
+	const [calendar, setCalendar] = useState([]);
+	const api_uri4 = '/list';
 
 	const [courseAr, setCourseAr] = useState([]);
 	const [courseTypeAr, setCourseTypeAr] = useState([]);
 	const [ar, setAr] = useState([]);
 
 
-	// const ct_idx = `${props.params.idx}`;
 	const router = useRouter();
 	const [idx, setValue] = React.useState(0);
 
+	const handleChange = (event, idx) => {
+		setValue(idx);
+	};
 
 	function getCourseTypeList() {
 		axios.get(
 			api_uri,
 		).then(json => {
+			console.log(json.data.courseTypeAr);
 			setAr(json.data.courseTypeAr);
+		});
+	};
+
+	// 해당 과정에 속하는 과목 목록 가져오는 기능
+	function getList() {
+		axios.get(
+			api_uri,
+		).then((json) => {
+			setCourseAr(json.data.courseAr);
 		});
 	};
 
@@ -49,9 +68,6 @@ export default function Nav(props) {
 	////////////////////////////////
 
 
-	const handleChange = (event, idx) => {
-		setValue(idx);
-	};
 
 	function CustomTabPanel(props) {
 		const { children, idx, index, ...other } = props;
@@ -93,6 +109,7 @@ export default function Nav(props) {
 			api_uri2,
 		).then(json => {
 			setCourseTypeAr(json.data.courseTypeAr);
+			console.log(json.data.courseTypeAr);
 		});
 	};
 
@@ -101,11 +118,22 @@ export default function Nav(props) {
 		router.push("/ctList/" + idx);
 	};
 
+	function getData3() {
+		axios.get(
+			api_uri4
+		).then((json) => {
+			console.log(json.data);
+			setCalendar(json.data)
+		});
+	}
+
 
 	useEffect(() => {
-
 		getCourseTypeList();
+		getData3();
+		// getList();
 	}, []);
+
 
 
 	return (
@@ -116,29 +144,77 @@ export default function Nav(props) {
 				</header>
 				<div className="container">
 					<div className="row">
-						<div className="4u">
-							<section className="special box">
-							<i className="icon fa-refresh major"/>
-								<div className="courseTypeList-box">
-									<Tabs value={idx} onChange={handleChange} aria-label="nav tabs example" variant="fullWidth" role="navigation" centered>
-										{courseTypeAr.map((list) => (
-											<Tab key={list.ct_idx} onClick={() => goPage(list.ct_idx)} label={list.ct_name} {...a11yProps(list.ct_idx)} />
-										))}
-									</Tabs>
-								</div>
-							</section>
-						</div>
-						<div className="4u">
-							<section className="special box"><i className="icon fa-refresh major"></i>
-								<h3>Blandit quis curae</h3>
-								<p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
-							</section>
-						</div>
-						<div className="4u">
-							<section className="special box"><i className="icon fa-cog major"></i>
-								<h3>Amet sed accumsan</h3>
-								<p>Eu non col commodo accumsan ante mi. Commodo consectetur sed mi adipiscing accumsan ac nunc tincidunt lobortis.</p>
-							</section>
+						<div className="12u">
+							<div className="courseTypeList-box">
+
+								{/* 교육과정이 없을때 여기를 수행 */}
+								{courseTypeAr.map((list) => (
+									<div style={{ display: 'inline-block', width: '300px', margin: 'auto' }} >
+										{
+											list.cvo === null
+												?
+												<Stack direction="row" >
+													<Box>
+														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)}  {...a11yProps(list.ct_idx)} style={{ textDecoration: "none" }}>
+															<Card sx={{ width: 280, marginTop: '10px' }}>
+																<CardActionArea>
+																	{/* 이미지 */}
+																	<CardMedia
+																		component="img"
+																		height="140"
+																		image="../images/ict_logo.png"
+																		alt="green iguana"
+																	/>
+
+																	<CardContent>
+																		<Typography gutterBottom variant="h5" component="div" value={idx} >
+																			교육과정이 없습니다
+																		</Typography>
+																		<Typography variant="body2" color="text.secondary">
+																			교육기간 : 준비중 <br />
+																			교육요일 : 준비중
+																		</Typography>
+																	</CardContent>
+																</CardActionArea>
+															</Card>
+														</Link>
+													</Box>
+												</Stack>
+
+												:
+
+												<Stack direction="row" >
+													<Box>
+														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)} {...a11yProps(list.ct_idx)} style={{ textDecoration: "none" }}>
+															<Card sx={{ width: 280, marginTop: '5px' }}>
+																<CardActionArea>
+																	{/* 이미지 */}
+																	<CardMedia
+																		component="img"
+																		height="140"
+																		image="../images/nav1.png"
+																		alt="green iguana"
+																	/>
+
+																	<CardContent>
+																		<Typography gutterBottom variant="h5" component="div" value={idx}  >
+																			{list.cvo.c_name}
+																		</Typography>
+																		<Typography variant="body2" color="text.secondary">
+																			교육기간 : {list.cvo.start_date}~{list.cvo.end_date}<br />
+																			교육요일 : {list.cvo.c_day}
+																		</Typography>
+																	</CardContent>
+																</CardActionArea>
+															</Card>
+														</Link>
+													</Box>
+												</Stack>
+										}
+									</div>
+								))}
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -164,24 +240,41 @@ export default function Nav(props) {
 				</div>
 			</section>
 
-
+			{/* 캘린더 */}
 			<section id="three" className="wrapper style1">
 				<div className="container">
 					<div className="row">
 						<div className="6u">
 							<section>
-								<h2>캘린더 자리</h2>
-								<a href="#" className="image fit"><img src="images/pic03.jpg" alt="logo3" width="818" height="340" /></a>
-								<p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.</p>
+								<FullCalendar
+									defaultView="dayGridMonth"
+									plugins={[dayGridPlugin]}
+									events={calendar}
+									dayMaxEventRows={true}
+								// eventSources={[
+								// 	googlecalender
+								// ]}
+								/>
 							</section>
 						</div>
+						{/* 취업현황 게시판 */}
 						<div className="6u">
 							<section>
-								<h2>공지사항</h2>
-								<p>Feugiat amet accumsan ante aliquet feugiat accumsan. Ante blandit accumsan eu amet tortor non lorem felis semper. Interdum adipiscing orci feugiat penatibus adipiscing col cubilia lorem ipsum dolor sit amet feugiat consequat.</p>
-								<ul className="actions">
-									<li><a href="#" className="button alt">Learn More</a></li>
-								</ul>
+								<h2>취업 현황</h2>
+								<TableContainer component={Paper}>
+									<Table aria-label="qna table">
+										<TableBody>
+											<TableRow
+												sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+											>
+												{/* <TableCell component="th" scope="row"></TableCell> */}
+												<TableCell align="left" ><i class="icon fa-heart"></i>&nbsp;이름</TableCell>
+												<TableCell align="center">212313</TableCell>
+												<TableCell align="right">2020-02-21</TableCell>
+											</TableRow>
+										</TableBody>
+									</Table>
+								</TableContainer>
 							</section>
 						</div>
 					</div>

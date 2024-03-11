@@ -11,20 +11,34 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fullcalendar/core": "^6.1.11",
+    "@fullcalendar/daygrid": "^6.1.11",
+    "@fullcalendar/react": "^6.1.11",
     "@mui/icons-material": "^5.15.11",
     "@mui/material": "^5.15.11",
     "@nextui-org/react": "^2.2.9",
     "@react-oauth/google": "^0.12.1",
     "@tosspayments/payment-sdk": "^1.7.0",
     "axios": "^1.6.7",
+    "css-loader": "^6.10.0",
     "framer-motion": "^11.0.5",
     "next": "14.1.0",
     "next-auth": "^4.24.6",
+<<<<<<< HEAD
     "qs": "^6.12.0",
     "react": "^18",
     "react-dom": "^18",
     "react-kakao-maps-sdk": "^1.1.26",
     "react-uuid": "^2.0.0",
+=======
+    "node-sass": "^9.0.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-kakao-maps-sdk": "^1.1.26",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+>>>>>>> bd2cdac4e3707fc6997127d1fa3fdf6b87c7f14e
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
