@@ -23,6 +23,3 @@
 - Framework : Springboot(3.x)
 - **Database : Mysql 8.0 CE**
 - **ORM : Mybatis**
-
-## 📌 주요 기능 
-- 
