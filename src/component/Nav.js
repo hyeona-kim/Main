@@ -114,8 +114,8 @@ export default function Nav(props) {
 	};
 
 	// 탭 눌렀을때 이동하는 기능
-	function goPage(idx) {
-		router.push("/ctList/" + idx);
+	function goPage(idx, index) {
+		router.push("/ctList/" + idx + "/" + index);
 	};
 
 	function getData3() {
@@ -148,14 +148,14 @@ export default function Nav(props) {
 							<div className="courseTypeList-box">
 
 								{/* 교육과정이 없을때 여기를 수행 */}
-								{courseTypeAr.map((list) => (
+								{courseTypeAr.map((list,index) => (
 									<div style={{ display: 'inline-block', width: '300px', margin: 'auto' }} >
 										{
 											list.cvo === null
 												?
 												<Stack direction="row" >
 													<Box>
-														<Link key={list.ct_idx} onClick={() => goPage(list.ct_idx)}  {...a11yProps(list.ct_idx)} style={{ textDecoration: "none" }}>
+														<Link key={list.ct_idx} onClick={() => goCtList(list.ct_idx)}  {...a11yProps(list.ct_idx)} style={{ textDecoration: "none" }}>
 															<Card sx={{ width: 280, marginTop: '10px' }}>
 																<CardActionArea>
 																	{/* 이미지 */}
@@ -268,7 +268,7 @@ export default function Nav(props) {
 												sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 											>
 												{/* <TableCell component="th" scope="row"></TableCell> */}
-												<TableCell align="left" ><i class="icon fa-heart"></i>&nbsp;이름</TableCell>
+												<TableCell align="left" ><i className="icon fa-heart"></i>&nbsp;이름</TableCell>
 												<TableCell align="center">212313</TableCell>
 												<TableCell align="right">2020-02-21</TableCell>
 											</TableRow>
