@@ -1,4 +1,5 @@
 import { Button } from '@mui/material';
+import { loadTossPayments } from '@tosspayments/payment-sdk';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -72,7 +73,8 @@ export const ModalView = styled.div.attrs((props) => ({
     }
 `;
 
-export default function TrainingBookModal({ar}) {
+export default function TrainingBookModal(ar) {
+
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const openModalHandler = () => {
@@ -82,8 +84,23 @@ export default function TrainingBookModal({ar}) {
     };
 
     // [결제] 클릭했을 때 결제창으로 가는 기능
-    function goTossPayment(idx) {
-
+    function goTossPayment(list) {
+        console.log(1);
+        async () => {
+            console.log(2);
+            const tossPayments = await loadTossPayments(
+              process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY  
+            );
+            
+            await tossPayments.requestPayment('카드', {
+                amount: `${list.tb_price}`,
+                orderId: Math.random().toString(36).slice(2),
+                orderName: `${list.tb_title}`,
+                successUrl: `${window.location.origin}/api/payments`,
+                failUrl: `${window.location.origin}/api/payments/fail`,
+            });
+            console.log(3) ;
+        };
     }
 
     return(
@@ -134,7 +151,7 @@ export default function TrainingBookModal({ar}) {
                                             <td>{list.tb_writer}</td>
                                             <td>{list.tb_publisher}</td>
                                             <td>{list.tb_price}원</td>
-                                            <td><Button variant="contained" color="info" onClick={() => goTossPayment(list.tb_idx)}>결제</Button></td>
+                                            <td><Button variant="contained" color="info" onClick={() => goTossPayment(list)}>결제</Button></td>
                                         </tr>
                                     ))}
                                     </tbody>
