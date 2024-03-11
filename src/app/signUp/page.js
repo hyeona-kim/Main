@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { NaverLogin } from '@/component/NaverLogin';
 import { KakaoLogin } from '@/component/KakaoLogin';
+import { GoogleLogin } from '@/component/GoogleLogin';
 
 export default function signUp() {
     const api_uri = '/login/regMember';
@@ -78,10 +79,12 @@ export default function signUp() {
             if(json.data) { // data가 True면 중복, False면 중복아님
                 element.innerHTML = "<div>중복입니다.</div>";
                 element.style.setProperty('color', 'red');
+                element.style.setProperty('font-size', '13px');
                 setIdFlag(true);
             }else{
                 element.innerHTML = "<div>중복되지 않습니다.</div>";
                 element.style.setProperty('color', 'blue');
+                element.style.setProperty('font-size', '13px');
                 setIdFlag(false);
             }
         });
@@ -113,13 +116,17 @@ export default function signUp() {
                 </div>
                     <table className="login-table">
                         <caption>회원가입 Form 테이블</caption>
+                        <colgroup>
+                            <col width={"80%"}/>
+                            <col width={"20%"}/>
+                        </colgroup>
                         <tbody id="login-tbody">
                             <tr>
                                 <td>
                                     <input type="text" id="m_id" className="login-input" onKeyUp={() => checkSameId()} placeholder="아이디"/>
                                 </td>
                                 <td id='check-text'>
-                                    <div className='font-color-blue'>중복되지 않습니다.</div>
+                                    <div className='font-color-blue font-size-13'>중복되지 않습니다.</div>
                                 </td>
                             </tr>
                             <tr>
@@ -142,11 +149,9 @@ export default function signUp() {
                     </table>
                 <hr/>
                 <div className="sns-login-btn">
-                    {/* <a type="button" className="button big bg-color-naver">네이버</a> */}
-                    {/* <a type="button" className="button big bg-color-kakao">카카오</a> */}
                     <NaverLogin/>
                     <KakaoLogin/>
-                    <a type="button" className="button big bg-color-google">구글</a>
+                    <GoogleLogin/>
                 </div>
             </div>
         </div>

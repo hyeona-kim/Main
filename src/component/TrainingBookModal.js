@@ -1,8 +1,10 @@
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import uuid from 'react-uuid';
+import { loadTossPayments } from '@tosspayments/payment-sdk';
 
 export const ModalContainer = styled.div`
   // Modal을 구현하는데 전체적으로 필요한 CSS를 구현
@@ -48,7 +50,7 @@ margin: 5px;
 padding: 5px 5px;
 width: 40px;
 height: 40px;
-display : flex;
+display : inline-block;
 justify-content : center;
 align-items : center;
 color: white;
@@ -61,9 +63,11 @@ export const ModalView = styled.div.attrs((props) => ({
   // Modal창 CSS를 구현합니다.
   display: flex;
   align-items: center;
+  text-align: right;
   flex-direction: column;
   border-radius: 20px;
   width: 1000px;
+  padding: 10px 0;
   background-color: #ffffff;
     >div.desc {
       margin: 50px;
@@ -75,6 +79,7 @@ export const ModalView = styled.div.attrs((props) => ({
 export default function TrainingBookModal({ar}) {
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
+    const clientKey = "test_ck_26DlbXAaV0LvvbajpNY5VqY50Q9R";
     const openModalHandler = () => {
     // isOpen의 상태를 변경하는 메소드를 구현
     // !false -> !true -> !false
@@ -82,9 +87,27 @@ export default function TrainingBookModal({ar}) {
     };
 
     // [결제] 클릭했을 때 결제창으로 가는 기능
-    function goTossPayment(idx) {
-
-    }
+    const goTossPayment = (index) => {
+        loadTossPayments(clientKey).then(tossPayments => {
+          tossPayments.requestPayment('카드', {
+            amount: ar[index].tb_price,
+            orderId: uuid(), // 대충 날짜를 조합하든가 uuid를 사용하는 방법도..
+            orderName: ar[index].tb_title,
+            customerName: sessionStorage.getItem("m_name"),
+            successUrl: "/myPage", // ${결제 성공 후 redirect할 url}
+            failUrl:"/", //  ${결제 실패한 경우 redirect할 url}
+          })
+          .catch(function (error) {
+            if (error.code === 'USER_CANCEL') {
+              // 결제 고객이 결제창을 닫았을 때 에러 처리
+              alert("결제를 취소하셨습니다.");
+              router.push("/myPage");
+            } else if (error.code === 'INVALID_CARD_COMPANY') {
+              // 유효하지 않은 카드 코드에 대한 에러 처리
+            }
+          })
+        })
+    };
 
     return(
         <>
@@ -128,13 +151,13 @@ export default function TrainingBookModal({ar}) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {ar.map((list) => (
+                                    {ar.map((list, index) => (
                                         <tr key={list.tb_idx}>
                                             <td>{list.tb_title}</td>
                                             <td>{list.tb_writer}</td>
                                             <td>{list.tb_publisher}</td>
                                             <td>{list.tb_price}원</td>
-                                            <td><Button variant="contained" color="info" onClick={() => goTossPayment(list.tb_idx)}>결제</Button></td>
+                                            <td><Button variant="contained" color="info" onClick={() => goTossPayment(index)}>결제</Button></td>
                                         </tr>
                                     ))}
                                     </tbody>

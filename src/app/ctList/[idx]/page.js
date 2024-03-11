@@ -122,11 +122,10 @@ export default function ctList(props) {
     };
 
     // 교육과정에서 [문의] 버튼 클릭시 이동하는 기능
-    // c_idx는 일단 받아둔거 - 나중에 필요하면 쓰고 아니면 지우기
     function goAsk(c_idx) {
         // 문의 후 원래 보던 페이지로 가기위해 저장
         sessionStorage.setItem('ct_idx', ct_idx);
-        router.push("/ask");
+        router.push("/ask?c_idx="+c_idx);
     };
 
     // [교재목록] 클릭시 목록 반환하는 기능

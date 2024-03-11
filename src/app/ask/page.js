@@ -9,11 +9,13 @@ export default function ask(props) {
     const router = useRouter();
     const idx = sessionStorage.getItem('ct_idx');
     const api_uri = '/login/addAsk';
+    const c_idx = `${props.searchParams.c_idx}`
 
     // [등록] 버튼을 클릭했을 때 수행하는 함수
     function addAsk(){
         const title = document.getElementById("ask-title").value;
         const content = document.getElementById("ask-content").value;
+        console.log(props.searchParams.c_idx);
         if(!title.trim().length > 0) {
             alert("제목을 입력하세요");
             return;
@@ -23,7 +25,7 @@ export default function ask(props) {
             return;
         }
         axios.get(
-            api_uri+"?ac_title="+title+"&ac_content="+content,
+            api_uri+"?ac_title="+title+"&ac_content="+content+"&c_idx="+c_idx,
         ).then(json => {
             router.push("/ctList/"+idx);
             sessionStorage.removeItem("ct_idx");

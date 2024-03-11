@@ -1235,8 +1235,11 @@
       .font-bold { font-weight: bold; }
       .font-color-blue { color: blue; }
       .font-color-red { color: red; }
+      .font-size-13 { font-size: 13px; }
       .font-size-17 { font-size: 17px; }
       .font-size-2em { font-size: 2.5em; font-weight: bold; }
+      .vertical-top { vertical-align: top; }
+      .vertical-middle { vertical-align: middle; }
       .bg-color-naver { background-color: #1EC800; border: 1px solid green }
       .bg-color-kakao { background-color: #F9E004; border: 1px solid #F9E004 }
       .bg-color-google { background-color: #192024; border: 1px solid #192024 }
@@ -1345,10 +1348,57 @@
       }
    
    /* 강사 소개 관련 */
-      .staffList-table {
-         width: 80%;
-         margin: 30px auto;
+      #staffList-box {
+         display: block;
+         width: 100%;
+         border: 1px solid #dedede;
+         border-radius: 15px;
+         margin: 50px auto;
       }
+
+      .staffList-wrapper {
+         width: 80%;
+         margin: 50px auto 30px auto;
+         text-align: center;
+      }
+
+         .staffList-wrapper article {
+            margin-top: 30px;
+         }
+
+         .staffList-wrapper article h1 {
+            color: #666f77;
+            font-weight: bold;
+            font-size: 2.5em;
+         }
+
+      .staffList-table {
+         width: 95%;
+         margin: 30px auto;
+         border: 1px solid #dedede;
+      }
+
+         .staffList-table caption { text-indent: -9999px; height: 0; }
+
+      #staffList-tbody tr{
+         background-color: #fff;
+      }
+
+      #staffList-tbody tr td:last-child{
+         text-align: left;
+      }
+
+      .staff-img {
+         display: inline-block;
+         width: 200px;
+         height: 200px;
+      }
+
+      .staff-email {
+         height: 200px;
+      }
+
+      
 
    /* 교육과정 관련 */
       .courseTypeList-wrapper {
@@ -1519,7 +1569,6 @@
       .editMyInfo-wrapper {
          display: block;
          width: 100%;
-         text-align: center;   
       }
 
       .editMyInfo-wrapper .ict-logo {
@@ -1528,7 +1577,11 @@
          margin: 30px auto;
       }
 
-      .editMyInfo-wrapper .ict-logo h1 {
+      .editMyInfo-wrapper article {
+         text-align: center;
+      }
+
+      .editMyInfo-wrapper .ict-logo h1, .editMyInfo-wrapper article h1 {
          color: #666f77;
          font-weight: bold;
          font-size: 1.25em;
@@ -1614,7 +1667,6 @@
          height: 50px;
          background-color: #fff;
       }
-
 
    /* Q&A 글쓰기 관련 */
       .qna-wrapper {
@@ -1749,4 +1801,43 @@
 
       #book-List-table tbody tr td {
          font-size: 14px;
+      }
+
+/* 평가 관련 */
+      .exam-wrapper {
+         display: block;
+         width: 100%;
+         text-align: center;   
+      }
+
+         .exam-wrapper .ict-logo {
+            display: block;
+            width: 317px;
+            margin: 30px auto;
+         }
+
+         .exam-wrapper .ict-logo h1 {
+            color: #666f77;
+            font-weight: bold;
+            font-size: 1.25em;
+         }
+
+      .exam-box {
+         display: block;
+         width: 900px;
+         border: 1px solid #dedede;
+         border-radius: 15px;
+         margin: 50px auto;
+      }
+
+      .exam-table {
+         width: 90%;
+         border: 1px solid #dedede;
+         margin: 10px auto;
+      }
+      .exam-table caption { text-indent: -9999px; height: 0px; }
+
+      #exam-tbody tr{
+         height: 30px;
+         background-color: #fff;
       }

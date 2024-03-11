@@ -19,6 +19,7 @@ export default function Header(){
 
     function goCtList(idx) {
         router.push('/ctList/'+idx);
+        router.refresh();
     };
 
     function logout() {

@@ -15,13 +15,16 @@
     "@mui/material": "^5.15.11",
     "@nextui-org/react": "^2.2.9",
     "@react-oauth/google": "^0.12.1",
+    "@tosspayments/payment-sdk": "^1.7.0",
     "axios": "^1.6.7",
     "framer-motion": "^11.0.5",
     "next": "14.1.0",
     "next-auth": "^4.24.6",
+    "qs": "^6.12.0",
     "react": "^18",
     "react-dom": "^18",
     "react-kakao-maps-sdk": "^1.1.26",
+    "react-uuid": "^2.0.0",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
