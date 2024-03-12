@@ -29,7 +29,9 @@ export default function Header(){
         // Spring서버에 저장된 session을 청소
         axios.get(
             "/login/logout"
-        ).then();
+        ).then(json => {
+            router.replace("/");
+        });
     };
 
     useEffect(() => {

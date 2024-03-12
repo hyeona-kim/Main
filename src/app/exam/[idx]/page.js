@@ -14,16 +14,26 @@ export default function Exam(props) {
     var option = [];
     
     function answerSubmit() {
-        let ar = new Array();
-        const input_answer = document.getElementsByClassName("answer");
-        for(let i=0; i<input_answer.length; i++) {
-            ar.push(input_answer[i].value);
+        let mc_ar = new Array();
+        let sa_ar = new Array();
+
+        const mc_answer = document.getElementsByClassName("mc_answer");
+        for(let i=0; i<mc_answer.length; i++) {
+            mc_ar.push(mc_answer[i].value);
         }
-        setAnswer(ar);
+
+        const sa_answer = document.getElementsByClassName("sa_answer");
+        for(let i=0; i<sa_answer.length; i++) {
+            sa_ar.push(sa_answer[i].value);
+        }
+        
         axios.post(
             "/login/answerSubmit",
             null,
-            {params:{ar : ar.join(",")}}
+            {params:{
+                mc_ar : mc_ar.join(","),
+                sa_ar : sa_ar.join(",")
+            }}
         ).then(json => {
             console.log("갔다옴")
         });
@@ -34,7 +44,6 @@ export default function Exam(props) {
         axios.get(
             "/login/myExam?s_idx="+s_idx
         ).then(json => {
-            console.log(json.data);
             setMcAr(json.data.mc_ar);
             setSaAr(json.data.sa_ar);
             setTitle(json.data.mc_ar[0].s_title);
@@ -68,14 +77,14 @@ export default function Exam(props) {
                                     </tr>
                                     <tr>
                                         <td>
-                                            (왼쪽부터 1번)&nbsp;&nbsp;&nbsp;{list.qt_select}
+                                            <span style={{color : 'font-color-blue;'}}>(정답에 맞는 값을 입력)</span>&nbsp;&nbsp;&nbsp;{list.qt_select}
                                             {/* {list.qt_select.split('│').map((option) => (
                                                 {option}
                                             ))} */}
                                         </td>
                                     </tr>
                                     <tr>
-                                    <td><input className="answer" placeholder="정답 입력"/></td>
+                                    <td><input className="mc_answer" placeholder="정답 입력 "/></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -103,7 +112,7 @@ export default function Exam(props) {
                                     <td>{list.qt_content}</td>
                                 </tr>
                                 <tr>
-                                    <td><input className="answer" placeholder="정답 입력"/></td>
+                                    <td><input className="sa_answer" placeholder="정답 입력"/></td>
                                 </tr>
                             </tbody>
                         </table>

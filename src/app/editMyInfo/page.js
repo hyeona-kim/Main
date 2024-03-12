@@ -82,8 +82,8 @@ export default function editMyInfo() {
                                 <td><input type="password" id="pw" placeholder="비밀번호"/></td>
                             </tr>
                             <tr>
-                                <td><label htmlFor="email">이메일<br/>(선택):</label></td>
-                                <td><input type="text" id="email" placeholder="이메일" defaultValue={vo.m_email}/></td>
+                                <td><label htmlFor="email">이메일:</label></td>
+                                <td><input type="text" id="email" placeholder="이메일" defaultValue={vo.m_email} readOnly/></td>
                             </tr>
                             <tr>
                                 <td><label htmlFor="name">이름:</label></td>

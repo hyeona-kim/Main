@@ -13,19 +13,6 @@ export default function Login() {
     const router = useRouter();
 
     const api_uri = '/login/login';
-    const googleLogin_uri = "https://accounts.google.com/o/oauth2/v2/auth?" +
-                    "client_id=921898621652-9ipomq19a4p88ofgn8ilhhb2gd0ea92c.apps.googleusercontent.com&"+
-                    "redirect_uri=http://localhost:3000/login&"+
-                    "response_type=token&"+
-                    "scope=https://www.googleapis.com/auth/drive.metadata.readonly";
-
-    function googleLogin() {
-        axios.get(
-            googleLogin_uri,
-        ).then(json => {
-            console.log(json);
-        });
-    };
 
     function login(){
         const m_id = document.getElementById("login-id-input").value;
@@ -44,6 +31,7 @@ export default function Login() {
             if(json.data.memberVo != null) {
                 sessionStorage.setItem("memberVo", json.data.memberVo);
                 sessionStorage.setItem("m_id", json.data.m_id);
+                sessionStorage.setItem("m_name", json.data.m_name);
                 sessionStorage.setItem("tr_idx", json.data.tr_idx);
                 router.push("/myPage");
             }else {
@@ -94,17 +82,19 @@ export default function Login() {
                         </form>
                         <hr/>
                         <div className="sns-login-btn">
-                            {/* <a type="button" className="button big bg-color-naver">네이버</a>
-                            <button type="button" id='kakao-login-btn' onClick={() => kakaoCheck()}><img src='images\kakao-login.png' style={{width: '100%', height: '100%'}}/></button>
-                            <a type="button" className="button big bg-color-google">구글</a> */}
-                            {/* <a type="button" id="kakao-login-btn" className="button big bg-color-kakao"><img src='images\kakao-login.png' style={{width: '140px', height: '100%'}}/></a> */}
-                            {/* <button type="button" id='google-login-btn' onClick={() => googleLogin()}><img src='images\google-login.png' style={{width: '100%', height: '100%'}}/></button> */}
                             <NaverLogin/>
                             <KakaoLogin/>
                             <GoogleLogin/>
                         </div>
                     </div>
-                : <div className='login-box'><p>로그인 완료</p></div>
+                : 
+                <div className="login-wrapper">
+                    <div className="login-box">
+                        <div className="ict-logo" id="loading-box">
+                            <h1>Loading...</h1>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
 
