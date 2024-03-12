@@ -25,6 +25,7 @@ export default function SubjectModal(props) {
     const [subjectAr, setSubjectAr] = useState([]);
     const api_uri = "/login/mySubject";
     const router = useRouter();
+    const [cnt, setCnt] = useState(0);
     
     function goExam(idx) {
         router.push("/exam/"+idx);
@@ -34,7 +35,9 @@ export default function SubjectModal(props) {
         axios.get(
             api_uri+"?c_idx="+props.idx
         ).then(json => {
+            console.log(json.data);
             setSubjectAr(json.data.ar);
+            setCnt(json.data.cnt);
         }); 
     },[]);
 
@@ -75,7 +78,13 @@ export default function SubjectModal(props) {
                                     <td>{list.us_name}</td>
                                     <td>{list.s_type}</td>
                                     <td>{list.sf_name}</td>
-                                    <td><Button variant="contained" color="primary" onClick={() => goExam(list.s_idx)}>평가</Button></td>
+                                    {
+                                        cnt > 0
+                                        ?
+                                        <td><Button variant="contained" color="primary" onClick={() => goExam(list.s_idx)}>평가</Button></td>
+                                        :
+                                        <td></td>
+                                    }
                                 </tr>
                             ))}
                         </tbody>
