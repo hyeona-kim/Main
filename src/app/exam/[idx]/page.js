@@ -11,7 +11,9 @@ export default function Exam(props) {
     const [answer, setAnswer] = useState([]);
     const [mcAr, setMcAr] = useState([]);
     const [saAr, setSaAr] = useState([]);
-    var option = [];
+    const [es_idx, setEsIdx] = useState();
+    const tr_idx = sessionStorage.getItem("tr_idx");
+    // var option = [];
     
     function answerSubmit() {
         let mc_ar = new Array();
@@ -26,16 +28,18 @@ export default function Exam(props) {
         for(let i=0; i<sa_answer.length; i++) {
             sa_ar.push(sa_answer[i].value);
         }
-        
+
         axios.post(
             "/login/answerSubmit",
             null,
             {params:{
                 mc_ar : mc_ar.join(","),
-                sa_ar : sa_ar.join(",")
+                sa_ar : sa_ar.join(","),
+                tr_idx : tr_idx,
+                es_idx : es_idx
             }}
         ).then(json => {
-            console.log("갔다옴")
+            router.replace("/myPage");
         });
     }
 
@@ -46,6 +50,7 @@ export default function Exam(props) {
         ).then(json => {
             setMcAr(json.data.mc_ar);
             setSaAr(json.data.sa_ar);
+            setEsIdx(json.data.es_idx);
             setTitle(json.data.mc_ar[0].s_title);
         });
     }, []);
@@ -77,10 +82,7 @@ export default function Exam(props) {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <span style={{color : 'font-color-blue;'}}>(정답에 맞는 값을 입력)</span>&nbsp;&nbsp;&nbsp;{list.qt_select}
-                                            {/* {list.qt_select.split('│').map((option) => (
-                                                {option}
-                                            ))} */}
+                                            <span style={{color : 'font-color-blue'}}>(정답에 맞는 값을 입력)</span>&nbsp;&nbsp;&nbsp;{list.qt_select}
                                         </td>
                                     </tr>
                                     <tr>
@@ -102,7 +104,7 @@ export default function Exam(props) {
                     </div>
                 :   <div>
                         {saAr.map((list, index) => (
-                        <table className="exam-table">
+                        <table className="exam-table" key={list.qt_idx}>
                             <caption>평가 테이블</caption>
                             <tbody id="exam-tbody">
                                 <tr>

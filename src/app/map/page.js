@@ -1,5 +1,5 @@
 "use client"
-import Banner from "@/component/Banner";
+import Banner from "@/component/banner";
 import { useEffect } from "react";
 
 
@@ -60,22 +60,18 @@ export default function test(){
             </header>
             <div className="container">
                 <div className="row">
-                    <div className="6u">
+                    <div className="6u img-div">
                         <section className="special">
-                            <a href="#" className="image fit">
-                                <img src="images/pic01.jpg" alt="" width="680" height="308"/>  
-                            </a>
-                            <h1>2호선 오시는 길</h1><br/>
-                            <p>도보 : 강남역 10번출구 400m 5분거리</p>
-                        </section>
-                    </div>
-                    <div className="6u">
-                        <section className="special">
-                            <a href="#" className="image fit">
-                                <img src="images/pic02.jpg" alt="" width="680" height="308"/>
-                            </a>
+                            <img src="images/lineNum9-map.png" alt="" width="600" height="300"/>
                             <h3>9호선 오시는 길</h3><br/>
                             <p>도보 : 신논현역 8번출구 300m 3분거리</p>
+                        </section>
+                    </div>
+                    <div className="6u img-div">
+                        <section className="special">
+                            <img src="images/lineNum2-map.png" alt="" width="600" height="300"/>
+                            <h1>2호선 오시는 길</h1><br/>
+                            <p>도보 : 강남역 10번출구 400m 5분거리</p>
                         </section>
                     </div>
                 </div>

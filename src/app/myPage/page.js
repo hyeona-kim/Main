@@ -28,7 +28,6 @@ export default function myPage() {
         axios.get(
             api_uri+"?m_id="+m_id
         ).then(json => {
-            console.log(json);
             setCourseAr(json.data.ar);
             setReplyAr(json.data.replyAr);
         }); 
@@ -98,7 +97,7 @@ export default function myPage() {
             {/* ===== 문의 답변 출력 부분 ===== */}
             {
             // 삼항 연산자를 이용하여 검색내용이 비었을 때 다르게 표시
-            courseAr === null
+            replyAr === null
             ?   
             <div className="my-course-table">
                 <table>
@@ -110,18 +109,18 @@ export default function myPage() {
                 <div className="my-course-table">
                     <table>
                         <colgroup>
-                            <col width="60%"/>
-                            <col width="30%"/>
-                            <col width="10%"/>
+                            <col width="50%"/>
+                            <col width="35%"/>
+                            <col width="15%"/>
                         </colgroup>
                         <tbody>
-                        {courseAr.map((list) => (
-                            <tr key={list.c_idx}>
-                                <td className="font-center">문의제목</td>
-                                <td>작성일: {list.ac_write_date}</td>
+                        {replyAr.map((list) => (
+                            <tr key={list.ac_idx}>
+                                <td className="align-center">제목: {list.ac_title}</td>
+                                <td className="align-center">작성일: {list.ac_write_date}</td>
                                 <td>
                                     {/* <Button variant="contained" color="info" onClick={() => viewReply(list.c_idx)}>답변</Button> */}
-                                    <ViewReplyModal/>
+                                    <ViewReplyModal idx={list.ac_idx}/>
                                 </td>
                             </tr>
                         ))}

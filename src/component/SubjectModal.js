@@ -35,7 +35,6 @@ export default function SubjectModal(props) {
         axios.get(
             api_uri+"?c_idx="+props.idx
         ).then(json => {
-            console.log(json.data);
             setSubjectAr(json.data.ar);
             setCnt(json.data.cnt);
         }); 
@@ -61,14 +60,14 @@ export default function SubjectModal(props) {
                         </table>
                     </div>
                 :   <div>
-                        <table className='subjectModal-table'>
+                        <table className='subjectModal-table align-center'>
                             <thead>
                                 <tr>
-                                    <th>과목명</th>
-                                    <th>능력단위명</th>
-                                    <th>분류</th>
-                                    <th>강사명</th>
-                                    <th>평가</th>
+                                    <td>과목명</td>
+                                    <td>능력단위명</td>
+                                    <td>분류</td>
+                                    <td>강사명</td>
+                                    <td>평가</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,18 +78,18 @@ export default function SubjectModal(props) {
                                     <td>{list.s_type}</td>
                                     <td>{list.sf_name}</td>
                                     {
-                                        cnt > 0
+                                        list.evo === null
                                         ?
-                                        <td><Button variant="contained" color="primary" onClick={() => goExam(list.s_idx)}>평가</Button></td>
-                                        :
                                         <td></td>
+                                        :
+                                        <td><Button variant="contained" color="primary" onClick={() => goExam(list.s_idx)}>평가</Button></td>
                                     }
                                 </tr>
                             ))}
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td><Button variant='contained' color='info' onClick={handleClose}>취소</Button></td>
+                                <td colSpan={5}><Button variant='contained' color='info' onClick={handleClose}>취소</Button></td>
                             </tr>
                         </tfoot>
                         </table>
