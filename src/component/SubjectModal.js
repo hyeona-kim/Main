@@ -78,7 +78,7 @@ export default function SubjectModal(props) {
                                     <td>{list.s_type}</td>
                                     <td>{list.sf_name}</td>
                                     {
-                                        list.evo === null
+                                        list.esvo === null
                                         ?
                                         <td></td>
                                         :

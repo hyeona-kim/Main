@@ -113,8 +113,8 @@ export default function Nav(props) {
 	};
 
 	// 탭 눌렀을때 이동하는 기능
-	function goPage(idx, index) {
-		router.push("/ctList/" + idx + "/" + index);
+	function goPage(idx) {
+		router.push("/ctList/" + idx + "/" + (idx-1));
 	};
 
 	function getData3() {
@@ -141,8 +141,8 @@ export default function Nav(props) {
 					<h2>국비지원취업과정</h2><br />
 				</header>
 				<div className="container">
-					<div className="row">
-						<div className="12u">
+					<div className="row align-center">
+						<div className="12u course-img">
 							<div className="courseTypeList-box">
 
 								{/* 교육과정이 없을때 여기를 수행 */}
@@ -225,9 +225,9 @@ export default function Nav(props) {
 				</header>
 				<div className="container">
 					<div className="row" >
-						<div className="12u" >
+						<div className="12u" style={{padding: "0"}}>
 							<section className="special ">
-								<img src="../images/main-banner1.jpg" alt="logo" width="100%" height="500px"></img>
+								<img src="../images/main-banner1.jpg" alt="logo" width="100%" height="579px"></img>
 								<Blank />
 								<p style={{ color: '#787878' }}>한국아이씨티기술협회 부설 한국ICT인재개발원에서는 수료 전부터 1:1 기업 취업연계 매칭으로 완벽 취업성공시스템을 진행합니다.<br />
 									여러분은 취업에 대한 열정만 가지고 있으면 됩니다. 나머지 준비는 한국ICT인재개발원에서 모든 것을 준비합니다.<br />

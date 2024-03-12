@@ -34,12 +34,11 @@ export default function Qna(props) {
         axios.get(
             api_uri + "?m_id=" + vo
         ).then((json) => {
-            console.log(json.data.ar);
             setMem(json.data.ar);
             if (vo === null || vo === 'null') {
+                alert("회원가입 후 가능합니다.");
                 router.push("/Qna");
             } else {
-                console.log(vo);
                 router.push("/write?m_id=" + vo);
             }
 
