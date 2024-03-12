@@ -109,7 +109,6 @@ export default function Nav(props) {
 			api_uri2,
 		).then(json => {
 			setCourseTypeAr(json.data.courseTypeAr);
-			console.log(json.data.courseTypeAr);
 		});
 	};
 
@@ -122,7 +121,6 @@ export default function Nav(props) {
 		axios.get(
 			api_uri4
 		).then((json) => {
-			console.log(json.data);
 			setCalendar(json.data)
 		});
 	}

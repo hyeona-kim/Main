@@ -18,24 +18,23 @@ const style = {
     p: 4,
 };
 
-export default function ViewReplyModal() {
+export default function ViewReplyModal(props) {
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
+    const idx = `${props.idx}`;
+    const handleOpen = () => {
+        setOpen(true);
+        axios.get(
+            "/login/getReply?ac_idx="+idx
+        ).then((json) => {
+            setReplyAr(json.data.replyAr);
+        });
+    };
     const handleClose = () => setOpen(false);
     const [replyAr, setReplyAr] = useState([]);
-    const api_uri = "/login/myReply";
-
-    useEffect(function() {
-        axios.get(
-            api_uri+"?m_id="+sessionStorage.getItem("m_id")
-        ).then(json => {
-            setReplyAr(json.data.ar);
-        }); 
-    },[]);
 
     return (
         <>
-        <Button variant='contained' color='info' onClick={handleOpen}>답변</Button>
+        <Button variant='contained' color='info' onClick={handleOpen}>답변확인</Button>
         <Modal
             open={open}
             onClose={handleClose}
@@ -45,25 +44,36 @@ export default function ViewReplyModal() {
             <Box sx={style}>
                 {/* ===== 문의 답변 출력 부분 ===== */}
                 {replyAr.map((list) => (
-                <div>
-                    <table className='subjectModal-table' key={list.ac_idx}>
-                        <thead>
-                            <tr>
-                                <th>답변 작성일</th>
-                                <td>{list.ac_answer_date}</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td colSpan={2}>{list.ac_answer}</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colSpan={2}><Button variant='contained' color='info' onClick={handleClose}>닫기</Button></td>
-                            </tr>
-                        </tfoot>
-                        </table>
+                    <div key={list.ac_idx}>
+                    {
+                        list.ac_answer === null
+                        ?   <div className="my-course-table">
+                                <table>
+                                    <tbody><tr><td className="font-center">답변이 아직 없습니다.</td></tr></tbody>
+                                </table>
+                            </div>
+                        :   <div>
+                                <table className='subjectModal-table' style={{border: "1px solid #dedede"}}>
+                                    <thead>
+                                        <tr>
+                                            <th>답변 작성일</th>
+                                            <td>{list.ac_answer_date}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style={{backgroundColor: "#fff"}}>
+                                            <th>답변 내용</th>
+                                            <td>{list.ac_answer}</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr className='align-center'>
+                                            <td colSpan={2}><Button variant='contained' color='info' onClick={handleClose}>닫기</Button></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                    }
                     </div>
                 ))}
             </Box>

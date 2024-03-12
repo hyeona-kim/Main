@@ -9,6 +9,7 @@ export default function ask(props) {
     const router = useRouter();
     const idx = sessionStorage.getItem('ct_idx');
     const api_uri = '/login/addAsk';
+    const idx3 = `${props.searchParams.idx3}`;
 
     // [등록] 버튼을 클릭했을 때 수행하는 함수
     function addAsk(){
@@ -23,9 +24,10 @@ export default function ask(props) {
             return;
         }
         axios.get(
-            api_uri+"?ac_title="+title+"&ac_content="+content,
+            api_uri+"?ac_title="+title+"&ac_content="+content+"&m_id="+sessionStorage.getItem("m_id"),
         ).then(json => {
-            router.push("/ctList/"+idx);
+            alert("성공적으로 접수 되었습니다.");
+            router.push("/ctList/"+idx+"/"+idx3);
             sessionStorage.removeItem("ct_idx");
         });
     }

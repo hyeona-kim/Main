@@ -18,7 +18,6 @@ export default function Header(){
     };
 
     function goCtList(index, idx) {
-        console.log(index)
         router.push('/ctList/'+idx+'/'+index);
     };
 
