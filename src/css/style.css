@@ -1623,6 +1623,12 @@
          margin: 0 10px;
       }
 
+      .course-img {
+         width: 95%;
+         padding: 0 !important;
+         margin: 0 auto !important;
+      }
+
    /* 문의사항 관련 */
       .ask-wrapper {
          display: block;

@@ -128,6 +128,7 @@ export default function ctList(props) {
     // c_idx는 일단 받아둔거 - 나중에 필요하면 쓰고 아니면 지우기
     function goAsk(c_idx) {
         if(sessionStorage.getItem("memberVo") === null) {
+            alert("회원가입을 한 후 가능합니다.")
             router.push("/signUp");
             return;
         }else{

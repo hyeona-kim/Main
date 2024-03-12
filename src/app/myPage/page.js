@@ -118,10 +118,11 @@ export default function myPage() {
                             <tr key={list.ac_idx}>
                                 <td className="align-center">제목: {list.ac_title}</td>
                                 <td className="align-center">작성일: {list.ac_write_date}</td>
-                                <td>
-                                    {/* <Button variant="contained" color="info" onClick={() => viewReply(list.c_idx)}>답변</Button> */}
-                                    <ViewReplyModal idx={list.ac_idx}/>
-                                </td>
+                                {
+                                    list.ac_answer === null
+                                    ?   <td></td>
+                                    :   <td><ViewReplyModal idx={list.ac_idx}/></td>
+                                }
                             </tr>
                         ))}
                         </tbody>
