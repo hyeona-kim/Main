@@ -25,6 +25,8 @@ export default function Nav(props) {
 	const api_uri2 = '/login/getCtList';
 	// const api_uri = `/login/ctList?ct_idx=${props.params.idx}`; 
 	// const ct_idx = `${props.params.idx}`;
+	const api_uri6 = '/login/after/list';
+	const [tlist, setTrlist] = useState([]);
 
 	//캘린더 
 	const [calendar, setCalendar] = useState([]);
@@ -57,6 +59,17 @@ export default function Nav(props) {
 			api_uri,
 		).then((json) => {
 			setCourseAr(json.data.courseAr);
+		});
+	};
+
+	function trlist() {
+		axios.get(
+			api_uri6,
+		).then((json) => {
+			// setTrlist(json.data.ar);
+			setTrlist(json.data.aa);
+			console.log(json.data.ar);
+			console.log(json.data.aa);
 		});
 	};
 
@@ -114,7 +127,7 @@ export default function Nav(props) {
 
 	// 탭 눌렀을때 이동하는 기능
 	function goPage(idx) {
-		router.push("/ctList/" + idx + "/" + (idx-1));
+		router.push("/ctList/" + idx + "/" + (idx - 1));
 	};
 
 	function getData3() {
@@ -130,6 +143,7 @@ export default function Nav(props) {
 		getCourseTypeList();
 		getData3();
 		// getList();
+		trlist();
 	}, []);
 
 
@@ -146,7 +160,7 @@ export default function Nav(props) {
 							<div className="courseTypeList-box">
 
 								{/* 교육과정이 없을때 여기를 수행 */}
-								{courseTypeAr.map((list,index) => (
+								{courseTypeAr.map((list, index) => (
 									<div style={{ display: 'inline-block', width: '300px', margin: 'auto' }} >
 										{
 											list.cvo === null
@@ -225,7 +239,7 @@ export default function Nav(props) {
 				</header>
 				<div className="container">
 					<div className="row" >
-						<div className="12u" style={{padding: "0"}}>
+						<div className="12u" style={{ padding: "0" }}>
 							<section className="special ">
 								<img src="../images/main-banner1.jpg" alt="logo" width="100%" height="579px"></img>
 								<Blank />
@@ -259,20 +273,22 @@ export default function Nav(props) {
 						<div className="6u">
 							<section>
 								<h2>취업 현황</h2>
-								<TableContainer component={Paper}>
-									<Table aria-label="qna table">
-										<TableBody>
-											<TableRow
-												sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-											>
-												{/* <TableCell component="th" scope="row"></TableCell> */}
-												<TableCell align="left" ><i className="icon fa-heart"></i>&nbsp;이름</TableCell>
-												<TableCell align="center">212313</TableCell>
-												<TableCell align="right">2020-02-21</TableCell>
-											</TableRow>
-										</TableBody>
-									</Table>
-								</TableContainer>
+								{tlist.map((tr) => (
+									<TableContainer component={Paper} key={tr.tr_idx} style={{margin:'15px'}}>
+										<Table aria-label="qna table">
+											<TableBody>
+												<TableRow
+													sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+												>
+													{/* <TableCell component="th" scope="row"></TableCell> */}
+													<TableCell align="left" ><i className="icon fa-heart"></i>&nbsp;***님</TableCell>
+													<TableCell align="center">{tr.wp_wname}</TableCell>
+													<TableCell align="right">{tr.wp_wday}</TableCell>
+												</TableRow>
+											</TableBody>
+										</Table>
+									</TableContainer>
+								))}
 							</section>
 						</div>
 					</div>
