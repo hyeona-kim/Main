@@ -13,6 +13,10 @@ const nextConfig = {
           destination: "http://localhost:8080/login/:path*"
         },
         {
+          source: "/toss/:path*",
+          destination: "http://localhost:8080/toss/:path*"
+        },
+        {
           source:"/list",
           destination: "http://localhost:5000/list"
         }

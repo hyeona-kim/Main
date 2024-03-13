@@ -20,6 +20,7 @@
     "@nextui-org/react": "^2.2.9",
     "@react-oauth/google": "^0.12.1",
     "@tosspayments/payment-sdk": "^1.7.0",
+    "@tosspayments/payment-widget-sdk": "^0.10.2",
     "axios": "^1.6.7",
     "css-loader": "^6.10.0",
     "framer-motion": "^11.0.5",
@@ -29,6 +30,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-kakao-maps-sdk": "^1.1.26",
+    "react-router-dom": "^6.22.3",
     "sass-loader": "^14.1.1",
     "style-loader": "^3.3.4",
     "styled-components": "^6.1.8"
