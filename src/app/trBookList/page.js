@@ -87,16 +87,32 @@ export default function TrainingBookModal({ ar }) {
         setIsOpen(!isOpen)
     };
 
-    
+    // useEffect(() => {
+    //     const fetchPaymentWidget = async () => {
+    //       try {
+    //         const loadedWidget = await loadPaymentWidget(widgetClientKey, customerKey);
+    //         setPaymentWidget(loadedWidget);
+    //       } catch (error) {
+    //         console.error("Error fetching payment widget:", error);
+    //       }
+    //     };
+
+    //     fetchPaymentWidget();
+    //   }, []);
+
+    //   useEffect(() => {
+    //     if (paymentWidget == null) {
+    //       return;
+    //     }
+    // },[]); 
 
     // [결제] 클릭했을 때 결제창으로 가는 기능
-    // function goTossPayment(list) {
-    //     console.log(list.tb_idx);
-        const goTossPayment = async(list) => {
+    function goTossPayment(list) {
+        async () => {
             const tossPayments = await loadTossPayments(
                 process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY
             );
-            
+            try {
                 await tossPayments?.requestPayment('카드', {
                     amount: `${list.tb_price}`,
                     orderId: Math.random().toString(36).slice(2),
@@ -104,9 +120,11 @@ export default function TrainingBookModal({ ar }) {
                     successUrl: `${window.location.origin}/api/payments`,
                     failUrl: `${window.location.origin}/api/payments/fail`,
                 });
-             
+            } catch (error) {
+                console.log("EEEE",error);
+            }
         };
-    
+    }
 
     return (
         <>

@@ -16,6 +16,7 @@ export default function myPage() {
             "/login/trBookList?c_idx="+idx
         ).then((json) => {
             setBookAr(json.data.ar);
+            console.log(json.data.ar);
         });
     }
 
@@ -23,6 +24,7 @@ export default function myPage() {
         axios.get(
             api_uri+"?m_id="+m_id
         ).then(json => {
+            
             setCourseAr(json.data.ar);
         }); 
     },[]);
