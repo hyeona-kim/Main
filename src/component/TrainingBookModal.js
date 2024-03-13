@@ -90,7 +90,7 @@ export default function TrainingBookModal({ar}) {
             const tossPayments = await loadTossPayments(
               process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY  
             );
-            
+            console.log(sessionStorage.getItem("tr_idx"))
             await tossPayments.requestPayment('카드', {
                 amount: `${list.tb_price}`,
                 orderName: `${list.tb_title}`,
