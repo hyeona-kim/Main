@@ -17,7 +17,7 @@ export default function SuccessPage() {
     };
 
     async function confirm() {
-      const response = await fetch("/toss/confirm", {
+      const response = await fetch("/toss/confirm?tr_idx="+sessionStorage.getItem("tr_idx"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
