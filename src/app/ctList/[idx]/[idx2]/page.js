@@ -128,7 +128,7 @@ export default function ctList(props) {
     // c_idx는 일단 받아둔거 - 나중에 필요하면 쓰고 아니면 지우기
     function goAsk(c_idx) {
         if(sessionStorage.getItem("memberVo") === null) {
-            alert("회원가입을 한 후 가능합니다.")
+            alert("회원가입을 한 후 가능합니다.");
             router.push("/signUp");
             return;
         }else{
@@ -137,14 +137,20 @@ export default function ctList(props) {
             router.push("/ask?idx3="+idx3);
         }
     };
-
+    
     // [교재목록] 클릭시 목록 반환하는 기능
     function trBookList(idx) {
-        axios.get(
-            "/login/trBookList?c_idx="+idx
-        ).then((json) => {
-            setBookAr(json.data.ar);
-        });
+        if(sessionStorage.getItem("memberVo") === null) {
+            alert("회원가입을 한 후 가능합니다.");
+            router.push("/signUp");
+            return;
+        }else {
+            axios.get(
+                "/login/trBookList?c_idx="+idx
+            ).then((json) => {
+                setBookAr(json.data.ar);
+            });
+        }
     };
 
     useEffect(() => {

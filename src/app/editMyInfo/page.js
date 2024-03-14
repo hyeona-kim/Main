@@ -43,7 +43,17 @@ export default function editMyInfo() {
                 "&m_name="+name+
                 "&m_addr="+addr
         ).then((json) => {
-            router.replace("/myPage");
+            alert("정보가 변경되었습니다. 다시 로그인하세요.");
+            // router.replace("/myPage");
+            sessionStorage.clear();
+        
+            // Spring서버에 저장된 session을 청소
+            axios.get(
+                "/login/logout"
+            ).then(json => {
+                router.replace("/");
+                router.refresh();
+            });
         });
     };
 
