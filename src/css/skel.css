@@ -203,7 +203,12 @@
 
 			.row.double > * {
 				/* padding-left: (gutters.vertical * 2) */
-				padding-left: 8em;
+				padding-left: 0em;
+			}
+			.row.double1 > * {
+				/* padding-left: (gutters.vertical * 2) */
+				padding-left: 0em;
+				
 			}
 
 			.row + .row.double > * {
