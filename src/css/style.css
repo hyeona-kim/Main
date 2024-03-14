@@ -515,6 +515,11 @@
       ul.alt {
          list-style: none;
          padding-left: 0;
+         width: 100%;
+         text-align: left;
+         margin-top: 20px;
+         
+
       }
 
       ul.alt a {
@@ -1231,7 +1236,7 @@
       }
 
       .row {
-         width: 90%;
+         width: 100%;
          margin: 0 auto !important;
       }
 
